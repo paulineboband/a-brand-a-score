@@ -10,15 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_22_091548) do
+ActiveRecord::Schema.define(version: 2021_06_22_093021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "brands", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "website_url"
+    t.integer "overall_score"
+    t.integer "environmental_score"
+    t.integer "social_score"
+    t.integer "quality_score"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "brand_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["brand_id"], name: "index_favorites_on_brand_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "requests", force: :cascade do |t|
@@ -27,6 +48,18 @@ ActiveRecord::Schema.define(version: 2021_06_22_091548) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_requests_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.integer "score"
+    t.bigint "user_id", null: false
+    t.bigint "brand_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["brand_id"], name: "index_reviews_on_brand_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -47,5 +80,9 @@ ActiveRecord::Schema.define(version: 2021_06_22_091548) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "favorites", "brands"
+  add_foreign_key "favorites", "users"
   add_foreign_key "requests", "users"
+  add_foreign_key "reviews", "brands"
+  add_foreign_key "reviews", "users"
 end
