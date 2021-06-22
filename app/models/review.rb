@@ -3,6 +3,7 @@ class Review < ApplicationRecord
   belongs_to :brand
 
   has_many :tag_reviews
+  has_many :tags, through: :tag_reviews
   has_many :votes
 
   validates :title, presence: true
