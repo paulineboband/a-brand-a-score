@@ -1,0 +1,9 @@
+<h1><%= @brand.name %></h1>
+
+<% if @brand.quality_score == nil%>
+  <p>Quality score : <i>missing info</i> </p>
+  <% else %>
+  <p>Quality score : <%= @brand.quality_score  %>/5 </p>
+<% end %>
+<p>Social score : <%= @brand.social_score %>/5</p>
+<p>Environmental score : <%= @brand.environmental_score %>/5 </p>

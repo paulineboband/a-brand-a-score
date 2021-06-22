@@ -49,7 +49,7 @@ review1 = Review.new(title: "Very satisfied",
   content: "I really like this brand",
   score: 4,
   brand_id: Brand.find_by(name: "Dr. Martens").id,
-  user_id: user.id
+  user_id: 1
   )
 review1.save!
 

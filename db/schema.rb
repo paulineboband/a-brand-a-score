@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_22_100230) do
+ActiveRecord::Schema.define(version: 2021_06_22_145858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,10 +28,10 @@ ActiveRecord::Schema.define(version: 2021_06_22_100230) do
     t.string "name"
     t.text "description"
     t.string "website_url"
-    t.integer "overall_score"
-    t.integer "environmental_score"
-    t.integer "social_score"
-    t.integer "quality_score"
+    t.float "overall_score"
+    t.float "environmental_score"
+    t.float "social_score"
+    t.float "quality_score"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "logo"
