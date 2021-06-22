@@ -7,4 +7,8 @@ class User < ApplicationRecord
   has_many :votes
   has_many :favorites
   has_many :requests
+
+  validates :last_name, presence: true
+  validates :first_name, presence: true
+  validates :description, length: { minimum: 10 }
 end
