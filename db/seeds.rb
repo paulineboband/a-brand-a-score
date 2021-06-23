@@ -4,9 +4,9 @@ require 'nokogiri'
 
 Nlp.destroy_all
 Favorite.destroy_all
+BrandCategory.destroy_all
 Category.destroy_all
 Tag.destroy_all
-BrandCategory.destroy_all
 Review.destroy_all
 Brand.destroy_all
 

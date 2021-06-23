@@ -8,8 +8,10 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to brand_path(@brand)
     else
-      redirect_to brand_path(@brand), notice: "Error: the review did not save"
-      #render_to_string(partial: "/shared/modalreview", locals: { brand: @brand, review: @review })
+      # redirect_to brand_path(@brand), notice: "Error: the review did not save"
+      # render_to_string(partial: "/shared/modalreview", locals: { brand: @brand, review: @review })
+      @display_modal = true
+      render "brands/show"
     end
   end
 

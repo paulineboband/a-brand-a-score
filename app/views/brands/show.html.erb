@@ -74,14 +74,13 @@ Reviews
 </ul>
 
 <!-- Button trigger modal -->
-<button type="button" class="green-btn" data-toggle="modal" data-target="#exampleModal">
+<button type="button" class="green-btn" id="add-review" data-toggle="modal" data-target="#reviewModal">
   Add a review
 </button>
 
-<%= render "/shared/modalreview", brand: @brand, review: @review %>
+<%= render "/shared/modalreview", brand: @brand, review: @review, display_modal: @display_modal %>
 
 <h3>Latest news</h3>
 
 <h3>Discover more brands</h3>
-
 
