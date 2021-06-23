@@ -11,7 +11,7 @@ class FavoritesController < ApplicationController
 
     @favorite.brand = @brand
     @favorite.user = current_user
-    render "brands/show", notice: "Added to your favorite brands !" if @favorite.save!
+    redirect_to brand_path(@brand), notice: "Added to your favorite brands !" if @favorite.save!
   end
 
   private
