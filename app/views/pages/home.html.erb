@@ -1,2 +1,51 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+
+<div class="home-container">
+
+<br>
+
+<h2 class="home-subtitle">“ Find out score brands for an eco-friendly and qualitative wardrobe ”</h2>
+
+<br>
+
+<form>
+  <div class="form-inline justify-content-center">
+      <input type="email" class="form-control"  placeholder="Type brand name...">
+      <button type="submit" class="green-btn">Submit</button>
+  </div>
+</form>
+
+<br>
+
+<br>
+
+<h3>Search by category</h3>
+
+<div class="container-home-img">
+  <div>
+    <div class="card-homepage clothing" style="background-image: url(https://i.pinimg.com/564x/67/b9/16/67b916764464735f46fb13c9230696ca.jpg)">
+      <%= link_to "Clothing", brands_path(:category => "clothing") %>
+    </div>
+  </div>
+  <div>
+    <div class="card-homepage shoes" style="background-image: url(https://i.pinimg.com/474x/05/4d/f5/054df5221ad0e722389164ec24aeb5a0.jpg)">
+      <%= link_to "Shoes", brands_path(:category => "shoes") %>
+    </div>
+    <div class="card-homepage sportswear" style="background-image: url(https://i.pinimg.com/564x/c6/e7/23/c6e7233583584063710ecdda56d9fdc4.jpg)">
+      <%= link_to "Sportswear", brands_path(:category => "sportswear") %>
+    </div>
+  </div>
+  <div>
+    <div class="card-homepage accessories" style="background-image: url(https://i.pinimg.com/474x/36/9b/38/369b386285b777eef4be6ee1ef075a9d.jpg)">
+      <%= link_to "Accessories", brands_path(:category => "accessories") %>
+    </div>
+    <div class="card-homepage underwear" style="background-image: url(https://i.pinimg.com/474x/04/1e/d2/041ed2cd193428efaddc93b05b83e35f.jpg)">
+      <%= link_to "Underwear", brands_path(:category => "underwear") %>
+    </div>
+  </div>
+</div>
+
+<br>
+</div>
+
+
