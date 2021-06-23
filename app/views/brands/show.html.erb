@@ -12,6 +12,15 @@ Scores
 <p>Environmental score : <%= @brand.environmental_score %>/5 </p>
 
 
+
+<% if @toggle.empty? %>
+  <%= link_to "Add to your favorite", brand_favorites_path(@brand), method: :post%>
+<% else %>
+  <p>Already a favorite</p>
+<% end %>
+
+
+
 Reviews
 
 <ul>
@@ -34,3 +43,4 @@ Reviews
 <h3>Latest news</h3>
 
 <h3>Discover more brands</h3>
+
