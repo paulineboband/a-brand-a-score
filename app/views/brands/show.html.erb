@@ -7,3 +7,12 @@
 <% end %>
 <p>Social score : <%= @brand.social_score %>/5</p>
 <p>Environmental score : <%= @brand.environmental_score %>/5 </p>
+
+
+<% if @toggle.empty? %>
+  <%= link_to "Add to your favorite", brand_favorites_path(@brand), method: :post%>
+<% else %>
+  <p>Already a favorite</p>
+<% end %>
+
+
