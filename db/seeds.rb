@@ -1,4 +1,6 @@
 require 'csv'
+require 'open-uri'
+require 'nokogiri'
 
 Category.destroy_all
 Tag.destroy_all
@@ -33,6 +35,7 @@ CSV.foreach(("db/brand_scores.csv"), headers: true, col_sep: ";") do |row|
   brand = Brand.new(name: row[0],
             environmental_score: row[1].to_f,
             social_score: row[2].to_f,
+            website_url: "www.#{row[0].gsub(/\s+/, "").gsub(/\.+/, "").gsub(/\&+/, "").downcase}.com"
           )
   brand.quality_score = row[3].to_f unless row[3].to_f == 0
   brand.save!
@@ -44,6 +47,7 @@ CSV.foreach(("db/brand_scores.csv"), headers: true, col_sep: ";") do |row|
   end
 end
 
+
 #Seeding reviews
 review1 = Review.new(title: "Very satisfied",
   content: "I really like this brand",
@@ -52,4 +56,92 @@ review1 = Review.new(title: "Very satisfied",
   user_id: 1
   )
 review1.save!
+
+#Seeding reviews by scraping
+
+#Brand.all.each do |brand|
+  #p brand.website_url
+  #if URI.open("https://www.trustpilot.com/review/#{brand.website_url}")
+    #html_content = URI.open("https://www.trustpilot.com/review/#{brand.website_url}").read
+  #end
+#end
+
+#Dr. Martens
+html_content = URI.open("https://www.trustpilot.com/review/www.drmartens.com").read
+doc = Nokogiri::HTML(html_content)
+
+doc.search('.review-content').each do |element|
+  title = element.search('.review-content__title').first.text.strip
+  content = element.search('.review-content__text').first.text.strip
+  rating_element = element.search(".star-rating img").first.attribute("alt")
+  rating = rating_element ? rating_element.text.strip.match(/\d\.?\d*/)[0] : nil
+  review = Review.new(title: title ,
+    score: rating,
+    brand_id: Brand.find_by(name: "Dr. Martens").id,
+    user_id: user.id,
+    content: content
+  )
+  review.save!
+end
+
+#Nike
+html_content = URI.open("https://www.trustpilot.com/review/www.nike.com").read
+doc = Nokogiri::HTML(html_content)
+
+doc.search('.review-content').each do |element|
+  title = element.search('.review-content__title').first.text.strip
+  content = element.search('.review-content__text').first.text.strip
+  rating_element = element.search(".star-rating img").first.attribute("alt")
+  rating = rating_element ? rating_element.text.strip.match(/\d\.?\d*/)[0] : nil
+  review = Review.new(title: title ,
+    score: rating,
+    brand_id: Brand.find_by(name: "Nike").id,
+    user_id: user.id,
+    content: content
+  )
+  review.save!
+end
+
+#Adidas
+html_content = URI.open("https://www.trustpilot.com/review/www.adidas.com").read
+doc = Nokogiri::HTML(html_content)
+
+doc.search('.review-content').each do |element|
+  title = element.search('.review-content__title').first.text.strip
+  content = element.search('.review-content__text').first.text.strip
+  rating_element = element.search(".star-rating img").first.attribute("alt")
+  rating = rating_element ? rating_element.text.strip.match(/\d\.?\d*/)[0] : nil
+  review = Review.new(title: title ,
+    score: rating,
+    brand_id: Brand.find_by(name: "Adidas").id,
+    user_id: user.id,
+    content: content
+  )
+  review.save!
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
