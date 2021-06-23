@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :brands, only: [:index, :show] do
-    resources :favorites, only: [:create]
+    resources :favorites, only: [:create, :destroy]
     resources :reviews, only: [:new, :create]
   end
 
