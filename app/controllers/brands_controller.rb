@@ -13,5 +13,7 @@ class BrandsController < ApplicationController
     @toggle = current_user.favorites.select { |favorite| favorite.brand_id == @brand.id }
 
     @review = Review.new
+
+
   end
 end
