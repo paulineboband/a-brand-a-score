@@ -2,6 +2,7 @@ require 'csv'
 require 'open-uri'
 require 'nokogiri'
 
+Nlp.destroy_all
 Favorite.destroy_all
 Category.destroy_all
 Tag.destroy_all
@@ -42,9 +43,10 @@ CSV.foreach(("db/brand_scores.csv"), headers: true, col_sep: ";") do |row|
   brand.save!
   array = row[4].split("/")
   array.each do |category|
-    BrandCategory.new(brand_id: brand.id,
+    new_cat = BrandCategory.new(brand_id: brand.id,
       category_id: Category.find_by(name: category).id
     )
+    new_cat.save!
   end
 end
 

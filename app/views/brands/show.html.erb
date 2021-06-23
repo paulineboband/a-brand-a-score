@@ -1,8 +1,10 @@
+<br>
 <h1><%= @brand.name %></h1>
 
 
-Scores
+<h3>Scores</h3>
 
+<p>Overall score : <%= @brand.overall_score.to_f.round(1) %>/5 </p>
 <% if @brand.quality_score == nil%>
   <p>Quality score : <i>missing info</i> </p>
   <% else %>
@@ -11,7 +13,7 @@ Scores
 <p>Social score : <%= @brand.social_score %>/5</p>
 <p>Environmental score : <%= @brand.environmental_score %>/5 </p>
 
-
+<br>
 
 <div class="sentiment-card">
   <%= link_to "Get the sentiment of users", brand_brand_analyse_path(@brand) %>
