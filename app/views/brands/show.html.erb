@@ -2,10 +2,11 @@
 
   <div class="title-show">
 
-    <div class="name-brand-show">
+    <div class="name-brand-fav">
       <div>
-        <h1><%= @brand.name %></h1>
+        <h1 class="brand-name-show"><%= @brand.name %></h1>
       </div>
+
 
       <div class="favorites-button">
         <% if @toggle == [] %>
@@ -26,9 +27,50 @@
     <%= render "/shared/modalreview", brand: @brand, review: @review, display_modal: @display_modal %>
   </div>
 
+
+  <br>
+
+  <div class="overall-score-container">
+    <div class="team-score">
+      <p><strong>Our team's score</strong></p>
+      <p><%= @brand.overall_score.to_f.round(1) %>/5 </p>
+
+      <% @brand.overall_score.to_i.times do %>
+       <i class="fas fa-star"></i>
+      <% end %>
+
+      <% if (@brand.overall_score - @brand.overall_score.to_i) >= 0.5 %>
+        <i class="fas fa-star-half-alt"></i>
+      <% end %>
+
+      <% (5 - @brand.overall_score.round).times do %>
+       <i class="far fa-star"></i>
+      <% end %>
+    </div>
+
+    <div class="consumer-score">
+      <p><strong>Our consumer's score</strong></p>
+      <p><%= @brand.overall_score.to_f.round(1) %>/5 </p>
+
+      <% @brand.overall_score.to_i.times do %>
+        <i class="fas fa-star"></i>
+      <% end %>
+
+      <% if (@brand.overall_score - @brand.overall_score.to_i) >= 0.5 %>
+        <i class="fas fa-star-half-alt"></i>
+      <% end %>
+
+      <% (5 - @brand.overall_score.round).times do %>
+       <i class="far fa-star"></i>
+      <% end %>
+    </div>
+  </div>
+
+  <br>
+
   <h3>Scores</h3>
 
-  <p>Overall score : <%= @brand.overall_score.to_f.round(1) %>/5 </p>
+
   <% if @brand.quality_score == nil%>
     <p>Quality score : <i>missing info</i> </p>
     <% else %>
@@ -36,6 +78,11 @@
   <% end %>
   <p>Social score : <%= @brand.social_score %>/5</p>
   <p>Environmental score : <%= @brand.environmental_score %>/5 </p>
+
+
+
+
+
 
   <br>
 
@@ -99,4 +146,5 @@
   <h3>Discover more brands</h3>
 
 </div>
+
 

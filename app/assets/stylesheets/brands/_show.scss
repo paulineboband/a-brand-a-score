@@ -4,8 +4,27 @@
   align-items: center;
 }
 
-.name-brand-show {
+.name-brand-fav {
   display:flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.brand-name-show {
+  font-size: 30px;
+  font-weight:bold;
+}
+
+.team-score {
+  line-height:5px;
+  margin-right:25px;
+}
+
+.consumer-score {
+  line-height:5px;
+  margin-left:25px;
+}
+
+.overall-score-container {
+  display:flex;
 }
