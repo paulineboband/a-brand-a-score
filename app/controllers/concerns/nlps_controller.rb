@@ -17,7 +17,7 @@ class NlpsController < ApplicationController
       anger: @analyse["emotion"]["document"]["emotion"]["anger"]
     )
     nlp.save!
-    render 'brands/show'
+    redirect_to brand_path(@brand)
     #raise
 
   end
