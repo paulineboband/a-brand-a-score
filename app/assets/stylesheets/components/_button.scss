@@ -1,0 +1,12 @@
+.green-btn {
+  background-color: $darkgreen;
+  color: white;
+  border:none;
+  border-radius: 5px;
+  margin-left:10px;
+  padding:5px 10px;
+
+  &:hover {
+    opacity:0.8;
+  }
+}
