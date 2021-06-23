@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_22_145858) do
+ActiveRecord::Schema.define(version: 2021_06_23_093648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,20 @@ ActiveRecord::Schema.define(version: 2021_06_22_145858) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["brand_id"], name: "index_favorites_on_brand_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "nlps", force: :cascade do |t|
+    t.string "sentiment_label"
+    t.float "sentiment_score"
+    t.float "sadness"
+    t.float "joy"
+    t.float "fear"
+    t.float "disgust"
+    t.float "anger"
+    t.bigint "brand_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["brand_id"], name: "index_nlps_on_brand_id"
   end
 
   create_table "requests", force: :cascade do |t|
@@ -117,6 +131,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_145858) do
   add_foreign_key "brand_categories", "categories"
   add_foreign_key "favorites", "brands"
   add_foreign_key "favorites", "users"
+  add_foreign_key "nlps", "brands"
   add_foreign_key "requests", "users"
   add_foreign_key "reviews", "brands"
   add_foreign_key "reviews", "users"
