@@ -1,5 +1,8 @@
 <h1><%= @brand.name %></h1>
 
+
+Scores
+
 <% if @brand.quality_score == nil%>
   <p>Quality score : <i>missing info</i> </p>
   <% else %>
@@ -8,9 +11,26 @@
 <p>Social score : <%= @brand.social_score %>/5</p>
 <p>Environmental score : <%= @brand.environmental_score %>/5 </p>
 
+
+Reviews
+
+<ul>
+  <% @brand.reviews.each do |review| %>
+    <li>
+      <strong><%= review.title %></strong> - <%= review.score %> <br>
+      <%= review.content %>
+
+    </li>
+  <% end %>
+</ul>
+
 <!-- Button trigger modal -->
 <button type="button" class="green-btn" data-toggle="modal" data-target="#exampleModal">
   Add a review
 </button>
 
 <%= render "/shared/modalreview", brand: @brand, review: @review %>
+
+<h3>Latest news</h3>
+
+<h3>Discover more brands</h3>
