@@ -13,7 +13,7 @@ Scores
 
 
 
-<% if @toggle.empty? %>
+<% if @toggle == [] %>
   <%= link_to "Add to your favorite", brand_favorites_path(@brand), method: :post%>
 <% else %>
   <p>Already a favorite</p>
