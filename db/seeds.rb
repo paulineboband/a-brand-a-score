@@ -33,11 +33,11 @@ quality.save!
 #Seeding brands and brand categories
 CSV.foreach(("db/brand_scores.csv"), headers: true, col_sep: ";") do |row|
   brand = Brand.new(name: row[0],
-            environmental_score: row[1].to_f,
-            social_score: row[2].to_f,
+            environmental_score: row[1].gsub(",", ".").to_f,
+            social_score: row[2].gsub(",", ".").to_f,
             website_url: "www.#{row[0].gsub(/\s+/, "").gsub(/\.+/, "").gsub(/\&+/, "").downcase}.com"
           )
-  brand.quality_score = row[3].to_f unless row[3].to_f == 0
+  brand.quality_score = row[3].gsub(",", ".").to_f unless row[3].nil?
   brand.save!
   array = row[4].split("/")
   array.each do |category|
