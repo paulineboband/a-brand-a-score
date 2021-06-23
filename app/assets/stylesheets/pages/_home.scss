@@ -1,1 +1,51 @@
 // Specific CSS for your home-page
+
+.home-container {
+  width:900px;
+  margin: 0 auto;
+  padding-top:30px;
+  text-align:center;
+}
+
+.home-subtitle {
+  font-size:20px;
+
+}
+
+.container-home-img {
+  display:flex;
+  justify-content:center;
+}
+
+.clothing {
+  height:300px;
+  width:250px;
+  margin-left:3px;
+}
+
+.sportswear {
+  height:147px;
+  width:250px;
+  margin-left:3px;
+  margin-top:3px;
+}
+
+.shoes {
+  height:150px;
+  width:250px;
+  margin-left:3px;
+}
+
+.accessories {
+  height:200px;
+  width:250px;
+  margin-left:3px;
+}
+
+.underwear {
+  height:97px;
+  width:250px;
+  margin-left:3px;
+  margin-top:3px;
+}
+

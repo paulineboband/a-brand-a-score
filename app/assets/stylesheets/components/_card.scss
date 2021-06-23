@@ -1,0 +1,28 @@
+.card-homepage {
+  background-size: cover;
+  background-position: center;
+  color:white;
+  font-size:30px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  &:hover {
+    opacity: 0.8;
+    transition: 1s;
+  }
+}
+
+.sentiment-card {
+  width: 600px;
+  box-shadow: 10px 0 0 grey;
+}
+
+.sentiment-card-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sentiment-bar {
+  margin: 20px;
+}
