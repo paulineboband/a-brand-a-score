@@ -12,3 +12,17 @@
     transition: 1s;
   }
 }
+
+.sentiment-card {
+  width: 600px;
+  box-shadow: 10px 0 0 grey;
+}
+
+.sentiment-card-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sentiment-bar {
+  margin: 20px;
+}
