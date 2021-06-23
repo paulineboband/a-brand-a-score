@@ -42,9 +42,10 @@ CSV.foreach(("db/brand_scores.csv"), headers: true, col_sep: ";") do |row|
   brand.save!
   array = row[4].split("/")
   array.each do |category|
-    BrandCategory.new(brand_id: brand.id,
+    new_category = BrandCategory.new(brand_id: brand.id,
       category_id: Category.find_by(name: category).id
     )
+    new_category.save!
   end
 end
 
