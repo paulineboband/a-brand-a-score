@@ -1,8 +1,9 @@
 <h1>My favorite brands</h1>
 
 <ul> <% @favorites.each do |favorite|  %>
-  <li><p> <%= link_to favorite.brand.name, brand_path(favorite.brand) %> </p>
-</li>
-<% end %>
+    <li><p> <%= link_to favorite.brand.name, brand_path(favorite.brand) %> </p>
+    <%= link_to "Delete from your favorite brands", brand_favorite_path(favorite.brand, favorite.id), method: :delete, data: { confirm: "Delete #{favorite.brand.name} from your favorite brands?"}%>
+    </li>
+  <% end %>
 </ul>
 
