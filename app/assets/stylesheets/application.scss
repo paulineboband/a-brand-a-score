@@ -11,13 +11,14 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "brands/index";
 
 a {
   text-decoration:none !important;
-  color: $gray;
+  color: $darkgreen;
 
   &:hover {
-    color:$gray;
+    color:$darkgreen;
     opacity:0.8;
   }
 }
