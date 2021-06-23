@@ -1,14 +1,10 @@
 class BrandsController < ApplicationController
   def index
-    @brands = Brand.all
-
     if params[:category]
-      @brands = Brand.where(:categories => params[:category])
+      @brands = Brand.joins(:categories).where(categories: { name: params[:category] })
     else
       @brands = Brand.all
     end
-
-
   end
 
   def show
