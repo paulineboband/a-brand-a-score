@@ -1,12 +1,40 @@
-<div class="navbar">
-  <div>
-    <a href="/" class="title-navbar">a brand <strong>a score</strong></a>
+
+
+<% if user_signed_in? %>
+
+  <div class="navbar">
+    <div>
+      <a href="/" class="title-navbar">a brand <strong>a score</strong></a>
+    </div>
+    <div class="navbar-links">
+      <a href="" class="navbar-elements"><i class="fas fa-search"></i></a>
+      <a href="" class="navbar-elements"><i class="far fa-heart"></i></a>
+      <a href="/brands" class="navbar-elements">BRANDS</a>
+      <a href="" class="navbar-elements">HOW WE RATE?</a>
+      <img class="avatar dropdown-toggle navbar-elements" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80" />
+         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <p><%= current_user.first_name %></p>
+            <%= link_to "Sign out", destroy_user_session_path, :method => :delete, class: "dropdown-item" %>
+            <%= link_to "Edit my profile", edit_user_registration_path, class: "dropdown-item" %>
+          </div>
+    </div>
   </div>
-  <div class="navbar-links">
-    <a href="" class="navbar-elements"><i class="fas fa-search"></i></a>
-    <a href="" class="navbar-elements"><i class="far fa-heart"></i></a>
-    <a href="" class="navbar-elements">BRANDS</a>
-    <a href="" class="navbar-elements">HOW WE RATE?</a>
-    <img class="avatar navbar-elements" src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80" />
+
+<% else %>
+
+  <div class="navbar">
+    <div>
+      <a href="/" class="title-navbar">a brand <strong>a score</strong></a>
+    </div>
+    <div class="navbar-links">
+      <a href="" class="navbar-elements"><i class="fas fa-search"></i></a>
+      <a href="/brands" class="navbar-elements">BRANDS</a>
+      <a href="" class="navbar-elements">HOW WE RATE?</a>
+      <%= link_to "SIGN UP", new_user_registration_path, class:"navbar-elements" %>
+      <%= link_to "LOG IN", new_user_session_path, class:"navbar-elements" %>
+    </div>
   </div>
-</div>
+
+<% end %>
+
+
