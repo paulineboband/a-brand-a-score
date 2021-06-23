@@ -7,3 +7,10 @@
 <% end %>
 <p>Social score : <%= @brand.social_score %>/5</p>
 <p>Environmental score : <%= @brand.environmental_score %>/5 </p>
+
+<!-- Button trigger modal -->
+<button type="button" class="green-btn" data-toggle="modal" data-target="#exampleModal">
+  Add a review
+</button>
+
+<%= render "/shared/modalreview", brand: @brand, review: @review %>
