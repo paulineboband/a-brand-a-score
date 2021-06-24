@@ -50,15 +50,14 @@ CSV.foreach(("db/brand_scores.csv"), headers: true, col_sep: ";") do |row|
   end
 end
 
+Brand.all.each do |brand|
+  html_content = URI.open("https://worldvectorlogo.com/search/#{brand.name.gsub(/\s+/, "%20").gsub(/é/, "e").gsub(/è/, "e")}").read
+  doc = Nokogiri::HTML(html_content)
+  brand.logo = doc.search('.logo__img').first.attribute("src").value
+  brand.save!
+end
 
 #Seeding reviews
-review1 = Review.new(title: "Very satisfied",
-  content: "I really like this brand",
-  score: 4,
-  brand_id: Brand.find_by(name: "Dr. Martens").id,
-  user_id: 1
-  )
-review1.save!
 
 #Seeding reviews by scraping
 
