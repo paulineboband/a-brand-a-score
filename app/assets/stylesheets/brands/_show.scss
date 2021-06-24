@@ -28,3 +28,22 @@
 .overall-score-container {
   display:flex;
 }
+
+.no-reviews-message {
+  color: grey;
+}
+
+.score-container {
+  display:flex;
+  align-items: baseline;
+}
+
+.score-number {
+  margin-left:5px;
+  font-size:13px;
+  color:grey;
+}
+
+.score-stars {
+  letter-spacing: -1px;
+}
