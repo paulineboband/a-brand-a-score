@@ -100,8 +100,14 @@ ul {
   padding: 16px;
 }
 
-.all-cards {
+.all-cards, .brand-carrousel {
   display: flex;
   flex-wrap: wrap;
 }
 
+
+.card-car {
+  display: flex;
+  align-items: center;
+  height: 120px;
+}
