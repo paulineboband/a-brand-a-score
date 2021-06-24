@@ -1,5 +1,20 @@
 <div class="container-index">
   <h3>Brands</h3>
+
+  <% if @brands.empty? %>
+
+  <p class="no-results-text"><em>No results found...</em><p>
+
+  <br>
+
+  <div class="request-btn-placement">
+    <%= link_to "Request information for this brand", root_path, class: "request-btn" %><br><br>
+    <%= link_to "Return on the homepage", root_path, class: "return-link" %>
+
+  </div>
+
+  <% else %>
+
   <div class="all-cards">
     <% @brands.each do |brand| %>
       <div class="card-product">
@@ -16,8 +31,10 @@
       </div>
     <% end %>
   </div>
+
+  <% end %>
+
+
 </div>
-
-
 
 

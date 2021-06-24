@@ -19,3 +19,23 @@ h3 {
   font-size: 20px;
   color: $darkgreen;
 }
+
+.request-btn-placement {
+  text-align:center;
+}
+
+.no-results-text {
+  padding-left:15px;
+  color:grey;
+}
+
+
+.return-link {
+  color:grey;
+  font-size:15px;
+
+  &:hover {
+    color:grey;
+    opacity:0.7;
+  }
+}
