@@ -1,17 +1,23 @@
+<div class="container-index">
+  <h3>Brands</h3>
+  <div class="all-cards">
+    <% @brands.each do |brand| %>
+      <div class="card-product">
+        <img src="https://images.unsplash.com/photo-1517502166878-35c93a0072f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80https://images.unsplash.com/photo-1517502166878-35c93a0072f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80" />
+          <div class="card-product-infos">
+            <p id="brand-name"><%= link_to brand.name, brand_path(brand) %></p>
+            <p>Overall score : <%= brand.overall_score.to_f.round(1)%>/5 </p>
+            <div class="container-tags">
+              <% brand.categories.each do |category| %>
+                <p class="tag"> <%= category.name.capitalize %></p>
+              <% end %>
+            </div>
+          </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
- <h3>Brands</h3>
 
- <ul>
-  <% @brands.each do |brand| %>
-    <li>
-      <p><%= link_to brand.name, brand_path(brand) %></p>
-      <p>Overall score : <%= brand.overall_score.to_f.round(1)%>/5 </p>
-
-      <% brand.categories.each do |category| %>
-        <p> <%= category.name %></p>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
 
 
