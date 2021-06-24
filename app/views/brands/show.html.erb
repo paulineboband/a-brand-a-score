@@ -7,7 +7,6 @@
         <h1 class="brand-name-show"><%= @brand.name %></h1>
       </div>
 
-
       <div class="favorites-button">
         <% if @toggle == [] %>
           <%= link_to ('<i class="far fa-heart"></i>').html_safe, brand_favorites_path(@brand), method: :post %>
@@ -17,7 +16,7 @@
       </div>
     </div>
 
-      <!-- Button trigger modal -->
+    <!-- Button trigger modal -->
     <div>
       <button type="button" class="green-btn" id="add-review" data-toggle="modal" data-target="#reviewModal">
         Add a review
@@ -27,6 +26,7 @@
     <%= render "/shared/modalreview", brand: @brand, review: @review, display_modal: @display_modal %>
   </div>
 
+  <a href=<%= "https://" + @brand.website_url %> target="_blank" ><p><%= @brand.website_url %></p></a>
 
   <br>
 
@@ -94,7 +94,7 @@
               <% @brand.reviews.reverse.each do |review| %>
                 <div class="review-card">
                   <li>
-                    <strong><%= review.title %></strong> - <%= review.score %> <br>
+                    <strong><%= review.title %></strong> - <sl-rating class="star" precision=".1" readonly value=<%= review.score %> ></sl-rating><br>
                     <%= review.content %>
                   </li>
                 </div>
