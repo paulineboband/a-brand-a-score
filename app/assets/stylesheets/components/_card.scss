@@ -22,18 +22,41 @@
 }
 
 .sentiment-card {
-  width: 400px;
+  width: 300px;
   box-shadow: 0 0 10px grey;
   padding: 20px;
-  margin: 20px;
+  margin: 10px;
   border-radius: 1em;
+  text-align: center;
 }
 
 .sentiment-card-content {
   display: flex;
   justify-content: space-between;
+  text-align: center;
+}
+
+.emotions {
+  text-align: left;
 }
 
 .sentiment-bar {
   margin: 20px;
+}
+
+.review-card {
+  background-color: lightgrey;
+  border-radius: 0.5em;
+  padding: 25px;
+  padding-top: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.review-card li {
+  list-style-type: none;
+}
+
+ul {
+  padding: 0px;
 }

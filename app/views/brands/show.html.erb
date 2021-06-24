@@ -1,4 +1,4 @@
-<div class="container-page">
+<div class="container-show">
 
   <div class="title-show">
 
@@ -34,106 +34,126 @@
     <div class="team-score">
       <p><strong>Our team's score</strong></p>
       <p><%= @brand.overall_score.to_f.round(1) %>/5 </p>
-
-      <% @brand.overall_score.to_i.times do %>
-       <i class="fas fa-star"></i>
-      <% end %>
-
-      <% if (@brand.overall_score - @brand.overall_score.to_i) >= 0.5 %>
-        <i class="fas fa-star-half-alt"></i>
-      <% end %>
-      <% (5 - @brand.overall_score.round).times do %>
-       <i class="far fa-star"></i>
-      <% end %>
+      <sl-rating class="star" precision=".1" readonly value=<%= @brand.overall_score %>></sl-rating>
     </div>
 
     <div class="consumer-score">
       <p><strong>Our consumer's score</strong></p>
       <p><%= @brand.overall_score.to_f.round(1) %>/5 </p>
-
-      <% @brand.overall_score.to_i.times do %>
-        <i class="fas fa-star"></i>
-      <% end %>
-
-      <% if (@brand.overall_score - @brand.overall_score.to_i) >= 0.5 %>
-        <i class="fas fa-star-half-alt"></i>
-      <% end %>
-
-      <% (5 - @brand.overall_score.round).times do %>
-       <i class="far fa-star"></i>
-      <% end %>
+      <sl-rating class="star" precision=".1" readonly value=<%= @brand.overall_score %>></sl-rating>
     </div>
   </div>
 
   <br>
-
-  <h3>Scores</h3>
-
-
-  <% if @brand.quality_score == nil%>
-    <p>Quality score : <i>missing info</i> </p>
-    <% else %>
-    <p>Quality score : <%= @brand.quality_score  %>/5 </p>
-  <% end %>
-  <p>Social score : <%= @brand.social_score %>/5</p>
-  <p>Environmental score : <%= @brand.environmental_score %>/5 </p>
-
   <br>
-  
-<div class="sentiment-card">
-  <%= link_to "Get the sentiment of users", brand_brand_analyse_path(@brand) %>
-  <div class="">
-    <% if @brand.nlp.nil? %>
-      <%= "No sentiment for now" %>
-    <% else %>
-      <div>
-        Sentiment: <strong><%= @brand.nlp.sentiment_label %></strong> <br>
-        <% if @brand.nlp.sentiment_score >= 0 %>
-          <sl-progress-ring size="200" stroke-width="10" percentage=<%= @brand.nlp.sentiment_score * 100 %> > <%= (@brand.nlp.sentiment_score * 100).round(1) %> % </sl-progress-ring>
+
+
+
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">About</button>
+      <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Reviews</button>
+    </div>
+  </nav>
+
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+      <br>
+      <h3>Scores</h3>
+      <br>
+      <div class="tab-container-about">
+        <% if @brand.quality_score == nil%>
+          <p><strong>Quality score</strong><br>
+          <i>missing info</i></p>
         <% else %>
-          <sl-progress-ring style="--track-color: #ffe2c6; --indicator-color: tomato;" size="200" stroke-width="10" percentage=<%= @brand.nlp.sentiment_score * 100 %> > <%= (@brand.nlp.sentiment_score * 100).round(1) %> % </sl-progress-ring>
+          <p><strong>Quality score</strong><br>
+          <%= @brand.quality_score %>/5 <br>
+          <sl-rating class="star" precision=".1" readonly value=<%= @brand.quality_score %>></sl-rating></p>
         <% end %>
+        <p><strong>Social score</strong>
+        <br>
+        <%= @brand.social_score %>/5 <br>
+        <sl-rating class="star" precision=".1" readonly value=<%= @brand.social_score %>></sl-rating></p>
+        <p><strong>Environmental score</strong>
+        <br>
+        <%= @brand.environmental_score %>/5 <br>
+        <sl-rating class="star" precision=".1" readonly value=<%= @brand.environmental_score %>></sl-rating></p>
       </div>
-        Sadness
-        <div class="progress">
-          <div class="progress-bar bg-info" role="progressbar" style="width: <%= @brand.nlp.sadness * 100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.sadness * 100).round(1) %>%</div>
+    </div>
+
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+      <br>
+
+      <div class="tab-container">
+        <div>
+          <div style="height:500px;width:620px;border-bottom:1px solid #ccc;overflow:auto;">
+            <ul>
+              <% @brand.reviews.reverse.each do |review| %>
+                <div class="review-card">
+                  <li>
+                    <strong><%= review.title %></strong> - <%= review.score %> <br>
+                    <%= review.content %>
+                  </li>
+                </div>
+              <% end %>
+            </ul>
+          </div>
+          <br>
+          <button type="button" class="green-btn" id="add-review" data-toggle="modal" data-target="#reviewModal">
+            Add a review
+          </button>
         </div>
-        Joy
-        <div class="progress">
-          <div class="progress-bar" role="progressbar" style="width: <%= @brand.nlp.joy * 100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.joy * 100).round(1) %>%</div>
+
+
+        <div class="sentiment-card">
+          <div class="">
+            <% if @brand.nlp.nil? %>
+              <%= "No sentiment for now" %>
+            <% else %>
+            <div>
+              General sentiment: <strong><%= @brand.nlp.sentiment_label %></strong> <br>
+              <% if @brand.nlp.sentiment_score >= 0 %>
+                <sl-progress-ring size="200" stroke-width="10" percentage=<%= @brand.nlp.sentiment_score * 100 %> > <%= (@brand.nlp.sentiment_score * 100).round(1) %> % </sl-progress-ring>
+              <% else %>
+                <sl-progress-ring style="--track-color: #ffe2c6; --indicator-color: tomato;" size="200" stroke-width="10" percentage=<%= @brand.nlp.sentiment_score * 100 %> > <%= (@brand.nlp.sentiment_score * 100).round(1) %> % </sl-progress-ring>
+              <% end %>
+            </div>
+            Emotions <br>
+            <div class="emotions">
+              Sadness
+                <div class="progress">
+                  <div class="progress-bar bg-info" role="progressbar" style="width: <%= @brand.nlp.sadness * 100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.sadness * 100).round(1) %>%</div>
+                </div>
+                Joy
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: <%= @brand.nlp.joy * 100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.joy * 100).round(1) %>%</div>
+                </div>
+                Fear
+                <div class="progress">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: <%= @brand.nlp.fear * 100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.fear * 100).round(1) %>%</div>
+                </div>
+                Disgust
+                <div class="progress">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: <%= @brand.nlp.disgust * 100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.disgust * 100).round(1) %>%</div>
+                </div>
+                Anger
+                <div class="progress">
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: <%= @brand.nlp.anger * 100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.anger * 100).round(1) %>%</div>
+                </div>
+              <% end %>
+            </div>
+            <br>
+            <%= link_to "Get the sentiment of users", brand_brand_analyse_path(@brand) %>
+          </div>
         </div>
-        Fear
-        <div class="progress">
-          <div class="progress-bar bg-warning" role="progressbar" style="width: <%= @brand.nlp.fear * 100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.fear * 100).round(1) %>%</div>
-        </div>
-        Disgust
-        <div class="progress">
-          <div class="progress-bar bg-success" role="progressbar" style="width: <%= @brand.nlp.disgust * 100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.disgust * 100).round(1) %>%</div>
-        </div>
-        Anger
-        <div class="progress">
-          <div class="progress-bar bg-danger" role="progressbar" style="width: <%= @brand.nlp.anger * 100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.anger * 100).round(1) %>%</div>          
-        </div>
-      <% end %>
+      </div>
     </div>
   </div>
 
 
+  <br>
 
-
-
-
-  Reviews
-
-  <ul>
-    <% @brand.reviews.each do |review| %>
-      <li>
-        <strong><%= review.title %></strong> - <%= review.score %> <br>
-        <%= review.content %>
-
-      </li>
-    <% end %>
-  </ul>
 
 
   <h3>Latest news</h3>
