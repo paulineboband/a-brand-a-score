@@ -5,7 +5,13 @@
   <% @brands.each do |brand| %>
     <li>
       <p><%= link_to brand.name, brand_path(brand) %></p>
-      <p>Overall score : </p>
+      <p>Overall score : <%= brand.overall_score.to_f.round(1)%>/5 </p>
+
+      <% brand.categories.each do |category| %>
+        <p> <%= category.name %></p>
+      <% end %>
     </li>
   <% end %>
 </ul>
+
+
