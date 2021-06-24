@@ -22,8 +22,11 @@
 }
 
 .sentiment-card {
-  width: 600px;
-  box-shadow: 10px 0 0 grey;
+  width: 400px;
+  box-shadow: 0 0 10px grey;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 1em;
 }
 
 .sentiment-card-content {

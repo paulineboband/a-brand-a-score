@@ -7,13 +7,16 @@ class BrandsController < ApplicationController
     end
 
     @brands.each do |brand|
-      brand.overall_score = (brand.environmental_score.to_f + brand.social_score.to_f + brand.quality_score.to_f) / 3
+      if brand.quality_score.nil?
+        brand.overall_score = (brand.environmental_score.to_f + brand.social_score.to_f) / 2
+      else
+        brand.overall_score = (brand.environmental_score.to_f + brand.social_score.to_f + brand.quality_score.to_f) / 3
+      end
     end
   end
 
   def show
     @brand = Brand.find(params[:id])
-    @brand.overall_score = (@brand.environmental_score.to_f + @brand.social_score.to_f + @brand.quality_score.to_f) / 3
 
     @toggle = current_user.favorites.select { |favorite| favorite.brand_id == @brand.id }
 
@@ -22,5 +25,11 @@ class BrandsController < ApplicationController
     sum = 0
     @brand.reviews.each { |review| sum += review.score }
     @consumer_score = sum / @brand.reviews.size.to_f
+
+    if @brand.quality_score.nil?
+      @brand.overall_score = (@brand.environmental_score.to_f + @brand.social_score.to_f) / 2
+    else
+      @brand.overall_score = (@brand.environmental_score.to_f + @brand.social_score.to_f + @brand.quality_score.to_f) / 3
+    end
   end
 end
