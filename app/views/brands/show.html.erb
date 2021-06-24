@@ -33,37 +33,57 @@
   <div class="overall-score-container">
     <div class="team-score">
       <p><strong>Our team's score</strong></p>
-      <p><%= @brand.overall_score.to_f.round(1) %>/5 </p>
 
-      <% @brand.overall_score.to_i.times do %>
-       <i class="fas fa-star"></i>
-      <% end %>
 
-      <% if (@brand.overall_score - @brand.overall_score.to_i) >= 0.5 %>
-        <i class="fas fa-star-half-alt"></i>
-      <% end %>
-      <% (5 - @brand.overall_score.round).times do %>
-       <i class="far fa-star"></i>
-      <% end %>
+
+      <div class="score-container">
+        <div class="score-stars">
+          <% @brand.overall_score.to_i.times do %>
+           <i class="fas fa-star"></i>
+          <% end %>
+
+          <% if (@brand.overall_score - @brand.overall_score.to_i) >= 0.5 %>
+            <i class="fas fa-star-half-alt"></i>
+          <% end %>
+          <% (5 - @brand.overall_score.round).times do %>
+           <i class="far fa-star"></i>
+          <% end %>
+        </div>
+
+        <div class="score-number">
+          <%= @brand.overall_score.to_f.round(1) %>
+        </div>
+      </div>
     </div>
 
     <div class="consumer-score">
       <p><strong>Our consumer's score</strong></p>
-      <p><%= @consumer_score.to_f.round(1) %>/5 </p>
 
-      <% @consumer_score.to_i.times do %>
-        <i class="fas fa-star"></i>
-      <% end %>
+      <% if @consumer_score.nan? %>
+        <p class="no-reviews-message">No reviews yet</p>
+      <% else %>
+        <div class="score-container">
+          <div class="score-stars">
+            <% @consumer_score.to_i.times do %>
+              <i class="fas fa-star"></i>
+            <% end %>
+            <% if (@consumer_score - @consumer_score.to_i) >= 0.5 %>
+              <i class="fas fa-star-half-alt"></i>
+            <% end %>
+            <% (5 - @consumer_score.round).times do %>
+             <i class="far fa-star"></i>
+            <% end %>
+          </div>
 
-      <% if (@consumer_score - @consumer_score.to_i) >= 0.5 %>
-        <i class="fas fa-star-half-alt"></i>
-      <% end %>
-
-      <% (5 - @consumer_score.round).times do %>
-       <i class="far fa-star"></i>
+          <div class="score-number">
+            <%= @consumer_score.to_f.round(1) %>
+          </div>
+        </div>
       <% end %>
     </div>
-  </div>
+
+    </div>
+
 
   <br>
 
@@ -79,7 +99,7 @@
   <p>Environmental score : <%= @brand.environmental_score %>/5 </p>
 
   <br>
-  
+
 <div class="sentiment-card">
   <%= link_to "Get the sentiment of users", brand_brand_analyse_path(@brand) %>
   <div class="">
@@ -112,7 +132,7 @@
         </div>
         Anger
         <div class="progress">
-          <div class="progress-bar bg-danger" role="progressbar" style="width: <%= @brand.nlp.anger * 100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.anger * 100).round(1) %>%</div>          
+          <div class="progress-bar bg-danger" role="progressbar" style="width: <%= @brand.nlp.anger * 100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.anger * 100).round(1) %>%</div>
         </div>
       <% end %>
     </div>
