@@ -49,17 +49,17 @@
 
     <div class="consumer-score">
       <p><strong>Our consumer's score</strong></p>
-      <p><%= @brand.overall_score.to_f.round(1) %>/5 </p>
+      <p><%= @consumer_score.to_f.round(1) %>/5 </p>
 
-      <% @brand.overall_score.to_i.times do %>
+      <% @consumer_score.to_i.times do %>
         <i class="fas fa-star"></i>
       <% end %>
 
-      <% if (@brand.overall_score - @brand.overall_score.to_i) >= 0.5 %>
+      <% if (@consumer_score - @consumer_score.to_i) >= 0.5 %>
         <i class="fas fa-star-half-alt"></i>
       <% end %>
 
-      <% (5 - @brand.overall_score.round).times do %>
+      <% (5 - @consumer_score.round).times do %>
        <i class="far fa-star"></i>
       <% end %>
     </div>
@@ -141,5 +141,6 @@
   <h3>Discover more brands</h3>
 
 </div>
+
 
 
