@@ -42,10 +42,10 @@
     <div class="consumer-score">
       <p><strong>Our consumer's score</strong></p>
 
-      <% if @consumer_score.nan? %>
+      <% if @brand.consumer_score.nil? %>
         <p class="no-reviews-message">No reviews yet</p>
       <% else %>
-        <p><%= @consumer_score.to_f.round(1) %>/5 </p>
+        <p><%= @brand.consumer_score.to_f.round(1) %>/5 </p>
         <sl-rating class="star" precision=".1" readonly value=<%= @consumer_score %>></sl-rating>
       <% end %>
     </div>

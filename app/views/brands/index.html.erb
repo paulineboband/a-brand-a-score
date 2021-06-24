@@ -1,14 +1,21 @@
 <div class="container-index">
   <h3>Brands</h3>
 
-  <% if @brands.empty? %>
+  <% if @brands == [] || @brands.nil? %>
 
   <p class="no-results-text"><em>No results found...</em><p>
 
   <br>
 
   <div class="request-btn-placement">
-    <%= link_to "Request information for this brand", root_path, class: "request-btn" %><br><br>
+
+    <button type="button" class="request-btn" id="add-request" data-toggle="modal" data-target="#requestModal">
+      Request information for this brand
+    </button>
+
+    <%= render "/shared/modalrequest", request: @request, display_modal_request: @display_modal_request %>
+
+    <br><br>
     <%= link_to "Return on the homepage", root_path, class: "return-link" %>
 
   </div>

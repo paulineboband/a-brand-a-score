@@ -9,12 +9,13 @@
 <br>
 
 
+
 <div class="form-inline justify-content-center">
   <%= form_tag brands_path, method: :get do %>
     <%= text_field_tag :query,
       params[:query],
       class: "form-control",
-      placeholder: "Find a movie"
+      placeholder: "Type a brand name..."
     %>
     <%= submit_tag "Search", value: "Search", class: "green-btn" %>
   <% end %>
