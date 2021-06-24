@@ -36,4 +36,6 @@ body {
   min-height:78vh;
 }
 
-
+.slick-prev:before, .slick-next:before {
+  color: $darkgreen !important;
+}

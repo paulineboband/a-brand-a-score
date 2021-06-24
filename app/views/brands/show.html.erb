@@ -41,8 +41,13 @@
 
     <div class="consumer-score">
       <p><strong>Our consumer's score</strong></p>
-      <p><%= @brand.overall_score.to_f.round(1) %>/5 </p>
-      <sl-rating class="star" precision=".1" readonly value=<%= @brand.overall_score %>></sl-rating>
+
+      <% if @consumer_score.nan? %>
+        <p class="no-reviews-message">No reviews yet</p>
+      <% else %>
+        <p><%= @consumer_score.to_f.round(1) %>/5 </p>
+        <sl-rating class="star" precision=".1" readonly value=<%= @consumer_score %>></sl-rating>
+      <% end %>
     </div>
   </div>
 
@@ -52,15 +57,13 @@
 
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">About</button>
+      <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Scores</button>
       <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Reviews</button>
     </div>
   </nav>
 
   <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-      <br>
-      <h3>Scores</h3>
       <br>
       <div class="tab-container-about">
         <% if @brand.quality_score == nil%>
@@ -154,11 +157,39 @@
 
 
 
-  <h3>Latest news</h3>
+  <h3>Latest news...</h3>
 
-  <h3>Discover more brands</h3>
+  <h3>Discover more brands...</h3>
 
+    <div class="brand-carrousel all-cards">
+      <% @random.each do |brand| %>
+      <div class="card-product">
+        <div class="card-car">
+          <img src="https://images.unsplash.com/photo-1517502166878-35c93a0072f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80">
+            <div class="card-product-infos">
+              <p id="brand-name"><%= link_to brand.name, brand_path(brand) %></p>
+              <p>Overall score : <%= brand.overall_score.to_f.round(1)%>/5 </p>
+              <div class="container-tags">
+                <% brand.categories.each do |category| %>
+                  <p class="tag"> <%= category.name.capitalize %></p>
+                <% end %>
+              </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
 </div>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
+<script type="text/javascript">
+  $('.brand-carrousel').slick({
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 3
+  });
+</script>
 
 

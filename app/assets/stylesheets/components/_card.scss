@@ -23,7 +23,7 @@
 
 .sentiment-card {
   width: 300px;
-  box-shadow: 0 0 10px grey;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
   padding: 20px;
   margin: 10px;
   border-radius: 1em;
@@ -45,9 +45,9 @@
 }
 
 .review-card {
-  background-color: lightgrey;
   border-radius: 0.5em;
   padding: 25px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
   padding-top: 15px;
   margin-top: 15px;
   margin-bottom: 15px;
@@ -100,8 +100,14 @@ ul {
   padding: 16px;
 }
 
-.all-cards {
+.all-cards, .brand-carrousel {
   display: flex;
   flex-wrap: wrap;
 }
 
+
+.card-car {
+  display: flex;
+  align-items: center;
+  height: 120px;
+}
