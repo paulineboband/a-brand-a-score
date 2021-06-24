@@ -33,5 +33,9 @@ class BrandsController < ApplicationController
     else
       @brand.overall_score = (@brand.environmental_score.to_f + @brand.social_score.to_f + @brand.quality_score.to_f) / 3
     end
+
+    sorted = Brand.where("quality_score >= 3")
+    @random = sorted.sample(6)
+
   end
 end
