@@ -6,6 +6,7 @@ class ReviewsController < ApplicationController
     @review.user = current_user
 
     if @review.save
+      ConsumerScoreService.new(@brand).compute
       redirect_to brand_path(@brand)
     else
       # redirect_to brand_path(@brand), notice: "Error: the review did not save"

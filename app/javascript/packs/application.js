@@ -27,6 +27,7 @@ import "bootstrap";
 
 // Internal imports, e.g:
 import { showModal } from '../plugins/display_modal'
+import { showRequestModal } from '../plugins/display_modal_request'
 
 // import { initSelect2 } from '../components/init_select2';
 
@@ -35,5 +36,8 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   if (document.getElementById('reviewModal')) {
     showModal();
+  }
+  if (document.getElementById('requestModal')) {
+    showRequestModal();
   }
 });
