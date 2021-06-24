@@ -1,6 +1,8 @@
 class BrandsController < ApplicationController
   def index
-    if params[:category]
+    if params[:query].present?
+      @brands = Brand.search_by_name(params[:query])
+    elsif params[:category]
       @brands = Brand.joins(:categories).where(categories: { name: params[:category] })
     else
       @brands = Brand.all
