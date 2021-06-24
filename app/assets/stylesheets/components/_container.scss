@@ -4,8 +4,28 @@
   margin: 0 auto;
 }
 
+.container-show {
+  width: 1000px;
+  padding-top:35px;
+  margin: 0 auto;
+}
+
 .favorites-button {
   margin-left:10px;
+}
+
+.tab-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.tab-container-about {
+  display: flex;
+  justify-content: start;
+}
+
+.tab-container-about p {
+  margin-right: 60px;
 }
 
 .container-index {
@@ -17,4 +37,3 @@
 .container-tags {
   display: flex;
   flex-wrap: wrap;
-}
