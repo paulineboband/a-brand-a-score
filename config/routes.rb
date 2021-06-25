@@ -10,5 +10,7 @@ Rails.application.routes.draw do
 
   get 'my-favorites', to: 'favorites#display'
 
+  get 'how-we-rate', to: 'pages#rate'
+
   resources :requests, only: [:create]
 end

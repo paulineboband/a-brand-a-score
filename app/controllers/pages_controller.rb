@@ -5,4 +5,7 @@ class PagesController < ApplicationController
     @brands = Brand.all
     @brands_sample = @brands.sample(5)
   end
+
+  def rate
+  end
 end
