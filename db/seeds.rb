@@ -159,3 +159,4 @@ Brand.all.each do |brand|
     brand.save!
   end
 end
+
