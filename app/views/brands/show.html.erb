@@ -165,7 +165,7 @@
       <% @random.each do |brand| %>
       <div class="card-product">
         <div class="card-car">
-          <img src="https://images.unsplash.com/photo-1517502166878-35c93a0072f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80">
+          <img src=<%= brand.logo %>>
             <div class="card-product-infos">
               <p id="brand-name"><%= link_to brand.name, brand_path(brand) %></p>
               <p>Overall score : <%= brand.overall_score.to_f.round(1)%>/5 </p>
