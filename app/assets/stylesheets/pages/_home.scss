@@ -8,8 +8,26 @@
 }
 
 .home-subtitle {
-  font-size:20px;
+  font-size:30px;
+}
 
+.highlight-word {
+  font-weight:bold;
+  font-size:45px;
+  color: $peach;
+}
+
+.search-container {
+  box-shadow: 0 0 15px rgba(0,0,0,0.05);
+  width: 700px;
+  padding: 10px 0;
+  border-radius: 15px;
+}
+
+.category-subtitle {
+  font-size:20px !important;
+  text-align: left;
+  margin-left:75px;
 }
 
 .container-home-img {
@@ -48,5 +66,18 @@
   width:250px;
   margin-left:3px;
   margin-top:3px;
+}
+
+.logo-homepage {
+  width:100px;
+  height:auto;
+  filter: grayscale(100%);
+}
+
+.logo-container-home {
+  display: flex;
+  justify-content: space-between;
+  width: 750px;
+  align-items:center;
 }
 
