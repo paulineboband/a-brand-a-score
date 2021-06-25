@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   end
 
   get 'my-favorites', to: 'favorites#display'
+
+  resources :requests, only: [:create]
 end
