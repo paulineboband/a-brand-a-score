@@ -54,6 +54,11 @@ Brand.all.each do |brand|
   html_content = URI.open("https://worldvectorlogo.com/search/#{brand.name.gsub(/\s+/, "%20").gsub(/é/, "e").gsub(/è/, "e")}").read
   doc = Nokogiri::HTML(html_content)
   brand.logo = doc.search('.logo__img').first.attribute("src").value
+  if brand.quality_score.nil?
+    brand.overall_score = (brand.environmental_score + brand.social_score) / 2
+  else
+    brand.overall_score = (brand.environmental_score + brand.social_score + brand.quality_score ) / 3
+  end
   brand.save!
 end
 
