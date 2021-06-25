@@ -33,18 +33,20 @@
   <div class="overall-score-container">
     <div class="team-score">
       <p><strong>Our team's score</strong></p>
-      <p><%= @brand.overall_score.to_f.round(1) %>/5 </p>
       <sl-rating class="star" precision=".1" readonly value=<%= @brand.overall_score %>></sl-rating>
+      <span class="score-number"><%= @brand.overall_score.to_f.round(1)%></span>
+
     </div>
 
     <div class="consumer-score">
       <p><strong>Our consumer's score</strong></p>
 
       <% if @brand.consumer_score.nil? %>
+        <br>
         <p class="no-reviews-message">No reviews yet</p>
       <% else %>
-        <p><%= @brand.consumer_score.to_f.round(1) %>/5 </p>
-        <sl-rating class="star" precision=".1" readonly value=<%= @consumer_score %>></sl-rating>
+      <sl-rating class="star" precision=".1" readonly value=<%= @brand.consumer_score %>></sl-rating>
+      <span class="score-number"><%= @brand.consumer_score.to_f.round(1)%></span>
       <% end %>
     </div>
   </div>
@@ -56,7 +58,7 @@
 
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Scores</button>
+      <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Detailed Scores</button>
       <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Reviews</button>
     </div>
   </nav>
@@ -64,23 +66,26 @@
   <div class="tab-content section-container" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
       <br>
+      <center><p><em>Our team's score is computed from those ratings</em></p></center>
       <div class="tab-container-about">
+
+
         <% if @brand.quality_score == nil%>
           <p><strong>Quality score</strong><br>
-          <i>missing info</i></p>
+          <span class="no-reviews-message"><i>Missing information</i></span></p>
         <% else %>
           <p><strong>Quality score</strong><br>
-          <%= @brand.quality_score %>/5 <br>
-          <sl-rating class="star" precision=".1" readonly value=<%= @brand.quality_score %>></sl-rating></p>
+          <sl-rating class="star" precision=".1" readonly value=<%= @brand.quality_score %>></sl-rating>
+          <span class="score-number"><%= @brand.quality_score.to_f.round(1)%></span></p>
         <% end %>
         <p><strong>Social score</strong>
         <br>
-        <%= @brand.social_score %>/5 <br>
-        <sl-rating class="star" precision=".1" readonly value=<%= @brand.social_score %>></sl-rating></p>
+        <sl-rating class="star" precision=".1" readonly value=<%= @brand.social_score %>></sl-rating>
+        <span class="score-number"><%= @brand.social_score.to_f.round(1)%></span></p>
         <p><strong>Environmental score</strong>
         <br>
-        <%= @brand.environmental_score %>/5 <br>
-        <sl-rating class="star" precision=".1" readonly value=<%= @brand.environmental_score %>></sl-rating></p>
+        <sl-rating class="star" precision=".1" readonly value=<%= @brand.environmental_score %>></sl-rating>
+        <span class="score-number"><%= @brand.environmental_score.to_f.round(1)%></span></p>
       </div>
 
     </div>
@@ -189,7 +194,7 @@
     $('.brand-carrousel').slick({
       infinite: true,
       slidesToShow: 3,
-      centerMode: true,
+
       slidesToScroll: 3
     });
   </script>
