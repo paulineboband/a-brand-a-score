@@ -129,26 +129,34 @@ end
 
 
 
+nike = Brand.find_by(name: "Nike")
+adidas = Brand.find_by(name: "Adidas")
+martens = Brand.find_by(name: "Dr. Martens")
 
+[nike, adidas, martens].each do |brand|
+  text = brand.reviews.map { |review| "#{review.title} #{review.content}" }.join(" ")
+  analyse = WatsonService.new(text).analyse
+  nlp = Nlp.new(
+    brand_id: brand.id,
+    sentiment_score: analyse["sentiment"]["document"]["score"],
+    sentiment_label: analyse["sentiment"]["document"]["label"],
+    joy: analyse["emotion"]["document"]["emotion"]["joy"],
+    sadness: analyse["emotion"]["document"]["emotion"]["sadness"],
+    fear: analyse["emotion"]["document"]["emotion"]["fear"],
+    disgust: analyse["emotion"]["document"]["emotion"]["disgust"],
+    anger: analyse["emotion"]["document"]["emotion"]["anger"]
+  )
+  nlp.save!
+end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Brand.all.each do |brand|
+  if brand.reviews.length != 0
+    sum = 0
+    brand.reviews.each do |review|
+      sum += review.score
+    end
+    brand.consumer_score = sum / brand.reviews.length
+    brand.save!
+  end
+end
 
