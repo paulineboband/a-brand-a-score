@@ -83,6 +83,7 @@
         <%= @brand.environmental_score %>/5 <br>
         <sl-rating class="star" precision=".1" readonly value=<%= @brand.environmental_score %>></sl-rating></p>
       </div>
+      <h3>Latest news...</h3>
     </div>
 
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -106,7 +107,6 @@
             Add a review
           </button>
         </div>
-
 
         <div class="sentiment-card">
 
@@ -154,29 +154,26 @@
   <br>
 
 
-
-  <h3>Latest news...</h3>
-
   <h3>Discover more brands...</h3>
 
-    <div class="brand-carrousel all-cards">
-      <% @random.each do |brand| %>
-      <div class="card-product">
-        <div class="card-car">
-          <img src=<%= brand.logo %>>
-            <div class="card-product-infos">
-              <p id="brand-name"><%= link_to brand.name, brand_path(brand) %></p>
-              <p>Overall score : <%= brand.overall_score.to_f.round(1)%>/5 </p>
-              <div class="container-tags">
-                <% brand.categories.each do |category| %>
-                  <p class="tag"> <%= category.name.capitalize %></p>
-                <% end %>
-              </div>
-          </div>
+  <div class="brand-carrousel all-cards">
+    <% @random.each do |brand| %>
+    <div class="card-product">
+      <div class="card-car">
+        <img src=<%= brand.logo %>>
+          <div class="card-product-infos">
+            <p id="brand-name"><%= link_to brand.name, brand_path(brand) %></p>
+            <p>Overall score : <%= brand.overall_score.to_f.round(1)%>/5 </p>
+            <div class="container-tags">
+              <% brand.categories.each do |category| %>
+                <p class="tag"> <%= category.name.capitalize %></p>
+              <% end %>
+            </div>
         </div>
       </div>
-      <% end %>
     </div>
+    <% end %>
+  </div>
 </div>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
