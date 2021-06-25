@@ -1,5 +1,6 @@
 <div class="container-show">
 
+<div class="section-container">
   <div class="title-show">
     <div class="name-brand-fav">
       <div>
@@ -48,7 +49,8 @@
     </div>
   </div>
 
-  <br>
+</div>
+
   <br>
 
 
@@ -59,7 +61,7 @@
     </div>
   </nav>
 
-  <div class="tab-content" id="nav-tabContent">
+  <div class="tab-content section-container" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
       <br>
       <div class="tab-container-about">
@@ -80,7 +82,7 @@
         <%= @brand.environmental_score %>/5 <br>
         <sl-rating class="star" precision=".1" readonly value=<%= @brand.environmental_score %>></sl-rating></p>
       </div>
-      <h3>Latest news...</h3>
+
     </div>
 
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -145,18 +147,23 @@
               <div class="progress">
                 <div class="progress-bar bg-danger" role="progressbar" style="width: <%= @brand.nlp.anger * 100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.anger * 100).round(1) %>%</div>
               </div>
+             </div>
             <% end %>
-          </div>
+
         </div>
       </div>
     </div>
-  <!-- </div> -->
+  </div>
 
 
-  <br>
+
+
 
 
   <h3>Discover more brands...</h3>
+
+
+  <div class="section-container">
 
   <div class="brand-carrousel all-cards">
     <% @random.each do |brand| %>
@@ -166,16 +173,15 @@
           <div class="card-product-infos">
             <p id="brand-name"><%= link_to brand.name, brand_path(brand) %></p>
             <p>Overall score : <%= brand.overall_score.to_f.round(1)%>/5 </p>
-            <div class="container-tags">
-              <% brand.categories.each do |category| %>
-                <p class="tag"> <%= category.name.capitalize %></p>
-              <% end %>
-            </div>
           </div>
         </div>
       </div>
     <% end %>
   </div>
+</div>
+
+<br>
+<br>
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -187,6 +193,8 @@
       slidesToScroll: 3
     });
   </script>
+
+
 </div>
 
 
