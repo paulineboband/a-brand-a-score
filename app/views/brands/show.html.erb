@@ -182,12 +182,22 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-<script type="text/javascript">
-  $('.brand-carrousel').slick({
+
+
+<script  type="text/javascript">
+  $(window).on('load', function() {
+     $('.brand-carrousel').slick({
     infinite: true,
     slidesToShow: 3,
+    centerMode: true,
     slidesToScroll: 3
   });
+     //$(".brand-carrousel").show();// your code here
+});
+
+
 </script>
+
+
 
 
