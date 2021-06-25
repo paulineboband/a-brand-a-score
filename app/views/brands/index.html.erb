@@ -25,10 +25,7 @@
   <div class="all-cards">
     <% @brands.each do |brand| %>
       <div class="card-product">
-
-        <div class="logo-box">
-          <img class="logo-image-index" src=<%= brand.logo %> />
-        </div>
+        <img src=<%= brand.logo %> />
         <div class="card-product-infos">
           <p id="brand-name"><%= link_to brand.name, brand_path(brand) %></p>
           <p>Overall score : <%= brand.overall_score.to_f.round(1)%>/5 </p>
