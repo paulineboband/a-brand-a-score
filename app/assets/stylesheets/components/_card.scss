@@ -80,7 +80,8 @@ ul {
 .card-product img {
   height: 100%;
   width: 120px;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 10px;
 }
 
 .card-product h2 {
