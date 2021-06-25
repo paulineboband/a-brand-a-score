@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
 
     if @review.save
       ConsumerScoreService.new(@brand).compute
-      redirect_to brand_path(@brand)
+      redirect_to brand_brand_analyse_path(@brand)
     else
       # redirect_to brand_path(@brand), notice: "Error: the review did not save"
       # render_to_string(partial: "/shared/modalreview", locals: { brand: @brand, review: @review })
