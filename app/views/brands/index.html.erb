@@ -22,12 +22,35 @@
 
   <% else %>
 
+  <select  name="category" id="select-filter">
+    <option value="All">Categories</option>
+    <% @categories.each do |category| %>
+      <option value="<%= category.name %>"><%= category.name.capitalize %></option>
+    <% end %>
+  </select>
 
+
+<!--
+  <div class="filter-category">
+    <label for="category-select"><strong>Categories </strong></label><br>
+    <div id="category-list" class="dropdown-check-list" tabindex="100">
+      <ul class="items dropdown-menu">
+        <% @categories.each do |category| %>
+          <li class="checkbox-category" data-countryselect="<%= category.name %>"><input type="checkbox"> <%= category.name.capitalize %> </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+-->
 
   <div class="all-cards">
 
     <% @brands.each do |brand| %>
       <div class="card-product">
+          <% brand.categories.each do |category| %>
+            <div data-category-select="<%= category.name %>">  </div>
+
+          <% end %>
           <div>
             <img src=<%= brand.logo %> />
           </div>

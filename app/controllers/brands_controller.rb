@@ -1,11 +1,11 @@
 class BrandsController < ApplicationController
   def index
     if params[:query].present?
-      @brands = Brand.search_by_name(params[:query])
+      @brands = Brand.search_by_name(params[:query]).order('name ASC')
     elsif params[:category]
-      @brands = Brand.joins(:categories).where(categories: { name: params[:category] })
+      @brands = Brand.joins(:categories).where(categories: { name: params[:category] }).order('name ASC')
     else
-      @brands = Brand.all
+      @brands = Brand.all.order('name ASC')
     end
 
     @brands.each do |brand|
@@ -17,6 +17,7 @@ class BrandsController < ApplicationController
     end
 
     @request = Request.new
+    @categories = Category.all
   end
 
   def show
