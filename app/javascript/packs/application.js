@@ -45,9 +45,12 @@ document.addEventListener('turbolinks:load', () => {
     });
 
   // Call your functions here, e.g:
-  initCategoryFilter();
-
   searchBar();
+
+  if (document.getElementById('select-filter')) {
+    initCategoryFilter();
+  }
+
 
   if (document.getElementById('reviewModal')) {
     showModal();
