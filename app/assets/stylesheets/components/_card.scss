@@ -51,11 +51,32 @@
   padding-top: 15px;
   margin-top: 15px;
   margin-bottom: 15px;
+  text-align:justify;
+
+  a:hover {
+    color: $peach;
+  }
+
+  .review-title {
+    display:flex;
+    align-items: center;
+    justify-content:space-between;
+    color: $darkgreen;
+  }
+
+  .review-content {
+    font-size:15px;
+    color:grey;
+  }
 }
 
 .review-card li {
   list-style-type: none;
 }
+
+
+
+
 
 ul {
   padding: 0px;
