@@ -7,6 +7,7 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require("slick-carousel")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -35,9 +36,17 @@ import { initCategoryFilter } from '../plugins/category_filter';
 
 
 document.addEventListener('turbolinks:load', () => {
+
+  $('.brand-carrousel').slick({
+      infinite: true,
+      slidesToShow: 3,
+      centerMode: true,
+      slidesToScroll: 3
+    });
+
   // Call your functions here, e.g:
   initCategoryFilter();
-  
+
   searchBar();
 
   if (document.getElementById('reviewModal')) {
@@ -57,6 +66,8 @@ document.addEventListener('turbolinks:load', () => {
     }
   });
 
+
 });
+
 
 
