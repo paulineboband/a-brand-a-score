@@ -3,6 +3,13 @@
 @import "config/colors";
 @import "config/bootstrap_variables";
 
+$nav-tabs-link-hover-color: green;
+$nav-tabs-link-hover-border-color: green green green;
+$nav-tabs-link-active-bg: $green;
+$nav-tabs-link-active-color:        $white;
+$nav-tabs-border-width: 2px;
+$nav-tabs-border-radius:  0.7em;
+
 // External libraries
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome-sprockets";
@@ -40,3 +47,4 @@ body {
 .slick-prev:before, .slick-next:before {
   color: $darkgreen !important;
 }
+
