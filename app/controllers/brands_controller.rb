@@ -40,5 +40,6 @@ class BrandsController < ApplicationController
     sorted = Brand.where("overall_score >= 3")
     @random = sorted.sample(6)
 
+    NewsController.create(@brand)
   end
 end
