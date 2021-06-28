@@ -72,19 +72,17 @@
 
 
         <% if @brand.quality_score == nil%>
-          <p><strong>Quality score</strong><br>
+          <p><strong>Quality score</strong><br> <i class="fas fa-check"></i>
           <span class="no-reviews-message"><i>Missing information</i></span></p>
         <% else %>
-
           <p><strong>Quality score</strong> <i class="fas fa-check"></i>
           <br>
-          <sl-rating class="star" precision=".1" readonly value=<%= @brand.quality_score %>></sl-rating></p>
+          <sl-rating class="star" precision=".1" readonly value=<%= @brand.quality_score %>></sl-rating>
           <span class="score-number"><%= @brand.quality_score.to_f.round(1)%></span></p>
         <% end %>
         <p><strong>Social score</strong> <i class="fas fa-users"></i>
         <br>
-        <%= @brand.social_score %>/5 <br>
-        <sl-rating class="star" precision=".1" readonly value=<%= @brand.social_score %>></sl-rating></p>
+        <sl-rating class="star" precision=".1" readonly value=<%= @brand.social_score %>></sl-rating>
         <span class="score-number"><%= @brand.social_score.to_f.round(1)%></span></p>
         <p><strong>Environmental score</strong> <i class="fas fa-leaf"></i>
         <br>
@@ -94,7 +92,7 @@
 
       <h3>Latest news...</h3>
       <br>
-  
+
     </div>
 
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
