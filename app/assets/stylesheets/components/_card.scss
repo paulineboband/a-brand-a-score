@@ -92,6 +92,7 @@ ul {
   display: flex;
   align-items: center;
   padding:4px 10px 10px 10px;
+  transition: 1s;
 }
 
 .card-product-infos {
@@ -160,6 +161,7 @@ ul {
   margin: 15px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 10px 10px 10px 30px;
 }
 .card-news li {
