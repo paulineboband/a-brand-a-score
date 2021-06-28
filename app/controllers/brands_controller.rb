@@ -18,6 +18,8 @@ class BrandsController < ApplicationController
 
     @request = Request.new
     @categories = Category.all
+
+
   end
 
   def show

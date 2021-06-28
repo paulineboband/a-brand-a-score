@@ -2,6 +2,7 @@ require 'csv'
 require 'open-uri'
 require 'nokogiri'
 
+News.destroy_all
 Nlp.destroy_all
 Favorite.destroy_all
 BrandCategory.destroy_all
