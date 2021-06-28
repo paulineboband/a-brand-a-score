@@ -61,6 +61,7 @@
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
       <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Detailed Scores</button>
       <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Reviews</button>
+      <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-news" type="button" role="tab" aria-controls="nav-news" aria-selected="false">Latest News</button>
     </div>
   </nav>
 
@@ -89,10 +90,23 @@
         <sl-rating class="star" precision=".1" readonly value=<%= @brand.environmental_score %>></sl-rating>
         <span class="score-number"><%= @brand.environmental_score.to_f.round(1)%></span></p>
       </div>
+    </div>
 
+    <div class="tab-pane fade" id="nav-news" role="tabpanel" aria-labelledby="nav-news-tab">
       <h3>Latest news...</h3>
+      <ul>
+        <% @brand.news.each do |element|%>
+          <div class="card-news">
+            <div class="card-news-info">
+              <li> <strong><a href="<%= element.url %>" target="_blank" > <%= element.title %> </a></strong> <br>
+              <em><%= DateTime.parse(element.date).strftime("%a %d of %B %Y at %H:%M") %></em> <br>
+              <%= element.description %></li>
+            </div>
+            <img src=<%= element.image_url %>>
+          </div>
+        <% end %>
+      </ul>
       <br>
-
     </div>
 
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
