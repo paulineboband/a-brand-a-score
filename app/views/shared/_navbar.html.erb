@@ -7,7 +7,24 @@
       <a href="/" class="title-navbar">a brand <strong>a score</strong></a>
     </div>
     <div class="navbar-links">
-      <a href="" class="navbar-elements"><i class="fas fa-search"></i></a>
+
+    <div id="search-form">
+      <div id="nav-search">
+        <%= form_tag brands_path, method: :get do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Type a brand name"
+          %>
+         <!-- <%= button_tag type: "submit", class: "search-btn", id: "nav-search-btn" do %>
+            <i class="fas fa-search"></i> -->
+          <% end %>
+        <% end %>
+      </div>
+      <div class="nav-btn">
+        <i class="fas fa-search" id="magnifying-glass"></i>
+      </div>
+    </div>
       <a href="/my-favorites" class="navbar-elements"><i class="far fa-heart"></i></a>
       <a href="/brands" class="navbar-elements">BRANDS</a>
       <a href="/how-we-rate" class="navbar-elements">HOW WE RATE?</a>

@@ -28,6 +28,8 @@ import "bootstrap";
 // Internal imports, e.g:
 import { showModal } from '../plugins/display_modal'
 import { showRequestModal } from '../plugins/display_modal_request'
+import { searchBar } from '../plugins/search_bar'
+
 
 // import { initSelect2 } from '../components/init_select2';
 
@@ -40,6 +42,8 @@ document.addEventListener('turbolinks:load', () => {
   if (document.getElementById('requestModal')) {
     showRequestModal();
   }
+
+  searchBar();
 });
 
 var i = 0;
