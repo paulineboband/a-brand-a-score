@@ -66,3 +66,5 @@ gem 'devise'
 gem 'ibm_watson'
 
 gem 'pg_search', '~> 2.3.0'
+
+gem 'pagy', '~> 3.5'
