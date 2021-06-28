@@ -26,29 +26,34 @@ require("channels")
 import "bootstrap";
 
 // Internal imports, e.g:
-import { showModal } from '../plugins/display_modal'
-import { showRequestModal } from '../plugins/display_modal_request'
-import { move } from '../plugins/bars'
+import { showModal } from '../plugins/display_modal';
+import { showRequestModal } from '../plugins/display_modal_request';
+import { move } from '../plugins/bars';
+import { initCategoryFilter } from '../plugins/category_filter';
 
-// import { initSelect2 } from '../components/init_select2';
+
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
-  // initSelect2();
+  initCategoryFilter();
+
   if (document.getElementById('reviewModal')) {
     showModal();
   }
   if (document.getElementById('requestModal')) {
     showRequestModal();
   }
+  document.addEventListener('click', () => {
+    if (document.getElementById('nav-profile-tab')) {
+      move("anger-bar");
+      move("sadness-bar");
+      move("joy-bar");
+      move("disgust-bar");
+      move("fear-bar");
+    }
+  });
+
+
 });
 
-document.addEventListener('click', () => {
-  if (document.getElementById('nav-profile-tab')) {
-    move("anger-bar");
-    move("sadness-bar");
-    move("joy-bar");
-    move("disgust-bar");
-    move("fear-bar");
-  }
-});
+
