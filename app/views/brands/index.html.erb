@@ -22,21 +22,28 @@
 
   <% else %>
 
+
+
   <div class="all-cards">
+
     <% @brands.each do |brand| %>
       <div class="card-product">
-        <img src=<%= brand.logo %> />
-        <div class="card-product-infos">
-          <p id="brand-name"><%= link_to brand.name, brand_path(brand) %></p>
-          <p>Overall score : <%= brand.overall_score.to_f.round(1)%>/5 </p>
-          <div class="container-tags">
-            <% brand.categories.each do |category| %>
-              <p class="tag"> <%= category.name.capitalize %></p>
-            <% end %>
+          <div>
+            <img src=<%= brand.logo %> />
           </div>
-        </div>
+          <div class="card-product-infos">
+            <p id="brand-name"><%= link_to brand.name, brand_path(brand) %></p>
+            <sl-rating class="star-index" precision=".1" readonly value=<%= brand.overall_score %>></sl-rating>
+            <span class="rate-index"><%= brand.overall_score.to_f.round(1)%></span>
+            <div class="container-tags">
+              <% brand.categories.each do |category| %>
+                <p class="tag"> <%= category.name.capitalize %></p>
+              <% end %>
+            </div>
+          </div>
       </div>
     <% end %>
+
   </div>
 
   <% end %>

@@ -1,3 +1,10 @@
+
+.section-container {
+  box-shadow: 0 0 15px rgba(0,0,0,0.05);
+  padding: 15px 30px;
+  border-radius: 15px;
+}
+
 .title-show {
   display:flex;
   justify-content: space-between;
@@ -39,7 +46,6 @@
 }
 
 .score-number {
-  margin-left:5px;
   font-size:13px;
   color:grey;
 }
@@ -48,4 +54,26 @@
   letter-spacing: -1px;
 }
 
+.nav-tabs {
+    border-bottom: none;
+    margin-left: 20px;
+}
+
+.nav-tabs .nav-link {
+    margin-bottom: 0px;
+}
+
+
+
+
+
+
+.all-cards:hover .card-product{
+  opacity:0.5;
+  transition: 400ms;
+}
+.all-cards .card-product:hover{
+  opacity:1;
+  transition: 400ms;
+}
 

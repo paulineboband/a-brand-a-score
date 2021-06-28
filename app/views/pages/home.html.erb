@@ -53,13 +53,12 @@
 
   <br>
 
-  <h3 class="category-subtitle">— <%= @brands.size %> brands available</h3>
+  <h3 class="category-subtitle">— <%= @brands.size %> brands scored</h3>
 
   <center>
     <div class="logo-container-home">
       <% @brands_sample.each do |brand| %>
         <%= link_to image_tag(brand.logo, class: "logo-homepage"), brand_path(brand) %>
-
       <% end %>
     </div>
   </center>

@@ -62,26 +62,38 @@ ul {
 }
 
 .card-product {
-  overflow: hidden;
-  height: 120px;
+  //overflow: hidden;
+  height: 140px;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.05);
-  display: flex;
-  align-items: center;
   width: 350px;
   margin: 15px;
+  display: flex;
+  align-items: center;
+  padding:4px 10px 10px 10px;
 }
 
 .card-product-infos {
   width: 250px;
-  height: 140px;
+  //height: 140px;
 }
+
+//.card-infos-logo {
+//  display: flex;
+// align-items: center;
+// }
+
+//.container-tags {
+//  //background-color: #ededed;
+//  border-top: #ededed 1px solid;
+//  padding: 5px;
+// }
 
 .card-product img {
   height: 100%;
-  width: 120px;
+  width: 100px;
   object-fit: contain;
-  padding: 10px;
+  padding: 15px;
 }
 
 .card-product h2 {
@@ -94,11 +106,16 @@ ul {
   font-size: 12px;
   line-height: 1.4;
   margin-bottom: 0;
-  margin-top: 8px;
+  margin-top: 4px;
+
+}
+
+.card-product a {
+  color: $green;
 }
 
 .card-product .card-product-infos {
-  padding: 16px;
+  padding: 15px;
 }
 
 .all-cards, .brand-carrousel {
@@ -111,4 +128,5 @@ ul {
   display: flex;
   align-items: center;
   height: 120px;
+  width:400px;
 }
