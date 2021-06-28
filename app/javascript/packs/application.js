@@ -28,6 +28,7 @@ import "bootstrap";
 // Internal imports, e.g:
 import { showModal } from '../plugins/display_modal'
 import { showRequestModal } from '../plugins/display_modal_request'
+import { move } from '../plugins/bars'
 
 // import { initSelect2 } from '../components/init_select2';
 
@@ -42,21 +43,12 @@ document.addEventListener('turbolinks:load', () => {
   }
 });
 
-var i = 0;
-function move() {
-  if (i == 0) {
-    i = 1;
-    var elem = document.getElementById("first-bar");
-    var width = 1;
-    var id = setInterval(frame, 10);
-    function frame() {
-      if (width >= 1) {
-        clearInterval(id);
-        i = 0;
-      } else {
-        width++;
-        elem.style.width = width + "%";
-      }
-    }
+document.addEventListener('click', () => {
+  if (document.getElementById('nav-profile-tab')) {
+    move("anger-bar");
+    move("sadness-bar");
+    move("joy-bar");
+    move("disgust-bar");
+    move("fear-bar");
   }
-}
+});
