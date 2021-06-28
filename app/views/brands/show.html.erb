@@ -121,8 +121,19 @@
                   <% @brand.reviews.reverse.each do |review| %>
                     <div class="review-card">
                       <li>
-                        <strong><%= review.title %></strong> - <sl-rating class="star" precision=".1" readonly value=<%= review.score %> ></sl-rating><br>
-                        <%= review.content %>
+                        <div class="review-title">
+                          <div>
+                            <strong><%= review.title %></strong> - <sl-rating class="star-index" precision=".1" readonly value=<%= review.score %> ></sl-rating>
+                          </div>
+                          <div>
+                            <%= link_to ('<i class="far fa-thumbs-up"></i>').html_safe, brand_review_votes_path(@brand, review), method: :post %>
+                            <%= review.votes.size %>
+                          </div>
+                        </div>
+                        <div class="review-content">
+                          <%= review.content %>
+                        </div>
+
                       </li>
                     </div>
                   <% end %>
@@ -205,20 +216,8 @@
 
 <br>
 <br>
-  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-  <script type="text/javascript">
-    $('.brand-carrousel').slick({
-      infinite: true,
-      slidesToShow: 3,
-
-      slidesToScroll: 3
-    });
-  </script>
-
-
 </div>
+
 
 
 

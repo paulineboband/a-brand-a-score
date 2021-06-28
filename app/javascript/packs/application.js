@@ -7,6 +7,7 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require("slick-carousel")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -26,16 +27,30 @@ require("channels")
 import "bootstrap";
 
 // Internal imports, e.g:
+
 import { showModal } from '../plugins/display_modal';
 import { showRequestModal } from '../plugins/display_modal_request';
+import { searchBar } from '../plugins/search_bar'
 import { move } from '../plugins/bars';
 import { initCategoryFilter } from '../plugins/category_filter';
 
 
-
 document.addEventListener('turbolinks:load', () => {
+
+  $('.brand-carrousel').slick({
+      infinite: true,
+      slidesToShow: 3,
+      centerMode: true,
+      slidesToScroll: 3
+    });
+
   // Call your functions here, e.g:
-  initCategoryFilter();
+  searchBar();
+
+  if (document.getElementById('select-filter')) {
+    initCategoryFilter();
+  }
+
 
   if (document.getElementById('reviewModal')) {
     showModal();
@@ -43,6 +58,7 @@ document.addEventListener('turbolinks:load', () => {
   if (document.getElementById('requestModal')) {
     showRequestModal();
   }
+
   document.addEventListener('click', () => {
     if (document.getElementById('nav-profile-tab')) {
       move("anger-bar");
@@ -55,5 +71,6 @@ document.addEventListener('turbolinks:load', () => {
 
 
 });
+
 
 

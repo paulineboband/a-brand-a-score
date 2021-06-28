@@ -91,3 +91,16 @@ h3 {
   border: none;
   border-radius: 5px;
 }
+
+
+.container-index {
+  .all-cards:hover .card-product{
+    opacity:0.5;
+    transition: 400ms;
+  }
+  .all-cards .card-product:hover{
+    opacity:1;
+    transition: 400ms;
+  }
+}
+

@@ -18,6 +18,8 @@ class BrandsController < ApplicationController
 
     @request = Request.new
     @categories = Category.all
+
+
   end
 
   def show
@@ -37,7 +39,7 @@ class BrandsController < ApplicationController
       @brand.overall_score = (@brand.environmental_score.to_f + @brand.social_score.to_f + @brand.quality_score.to_f) / 3
     end
 
-    sorted = Brand.where("overall_score >= 3")
+    sorted = Brand.where('id != ?', @brand.id).where("overall_score >= 3")
     @random = sorted.sample(6)
 
     NewsController.create(@brand)

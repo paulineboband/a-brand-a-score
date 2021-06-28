@@ -20,6 +20,7 @@ $nav-tabs-border-radius:  0.7em;
 @import "pages/index";
 @import "brands/index";
 @import "favorites/my-favorites";
+@import "pages/rate";
 
 a {
   text-decoration:none !important;
@@ -46,5 +47,10 @@ body {
 
 .slick-prev:before, .slick-next:before {
   color: $darkgreen !important;
+}
+
+.slick-slide {
+  margin-left: 8px;
+  margin-right: 8px;
 }
 
