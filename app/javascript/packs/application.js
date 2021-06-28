@@ -26,16 +26,20 @@ require("channels")
 import "bootstrap";
 
 // Internal imports, e.g:
-import { showModal } from '../plugins/display_modal'
-import { showRequestModal } from '../plugins/display_modal_request'
+
+import { showModal } from '../plugins/display_modal';
+import { showRequestModal } from '../plugins/display_modal_request';
 import { searchBar } from '../plugins/search_bar'
+import { move } from '../plugins/bars';
+import { initCategoryFilter } from '../plugins/category_filter';
 
-
-// import { initSelect2 } from '../components/init_select2';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
-  // initSelect2();
+  initCategoryFilter();
+  
+  searchBar();
+
   if (document.getElementById('reviewModal')) {
     showModal();
   }
@@ -43,24 +47,16 @@ document.addEventListener('turbolinks:load', () => {
     showRequestModal();
   }
 
-  searchBar();
+  document.addEventListener('click', () => {
+    if (document.getElementById('nav-profile-tab')) {
+      move("anger-bar");
+      move("sadness-bar");
+      move("joy-bar");
+      move("disgust-bar");
+      move("fear-bar");
+    }
+  });
+
 });
 
-var i = 0;
-function move() {
-  if (i == 0) {
-    i = 1;
-    var elem = document.getElementById("first-bar");
-    var width = 1;
-    var id = setInterval(frame, 10);
-    function frame() {
-      if (width >= 1) {
-        clearInterval(id);
-        i = 0;
-      } else {
-        width++;
-        elem.style.width = width + "%";
-      }
-    }
-  }
-}
+

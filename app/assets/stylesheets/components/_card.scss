@@ -123,10 +123,35 @@ ul {
   flex-wrap: wrap;
 }
 
-
 .card-car {
   display: flex;
   align-items: center;
   height: 120px;
   width:400px;
+}
+
+.card-news {
+  //overflow: hidden;
+  height: 180px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.05);
+  width: auto;
+  margin: 15px;
+  display: flex;
+  align-items: center;
+  padding: 10px 10px 10px 30px;
+}
+.card-news li {
+  list-style-type: none;
+}
+
+.card-news-infos {
+  width: 250px;
+}
+
+.card-news img {
+  height: 100%;
+  width: 200px;
+  object-fit: contain;
+  padding: 15px;
 }

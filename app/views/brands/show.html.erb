@@ -61,6 +61,7 @@
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
       <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Detailed Scores</button>
       <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Reviews</button>
+      <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-news" type="button" role="tab" aria-controls="nav-news" aria-selected="false">Latest News</button>
     </div>
   </nav>
 
@@ -72,23 +73,40 @@
 
 
         <% if @brand.quality_score == nil%>
-          <p><strong>Quality score</strong><br>
+          <p><strong>Quality score</strong><br> <i class="fas fa-check"></i>
           <span class="no-reviews-message"><i>Missing information</i></span></p>
         <% else %>
-          <p><strong>Quality score</strong><br>
+          <p><strong>Quality score</strong> <i class="fas fa-check"></i>
+          <br>
           <sl-rating class="star" precision=".1" readonly value=<%= @brand.quality_score %>></sl-rating>
           <span class="score-number"><%= @brand.quality_score.to_f.round(1)%></span></p>
         <% end %>
-        <p><strong>Social score</strong>
+        <p><strong>Social score</strong> <i class="fas fa-users"></i>
         <br>
         <sl-rating class="star" precision=".1" readonly value=<%= @brand.social_score %>></sl-rating>
         <span class="score-number"><%= @brand.social_score.to_f.round(1)%></span></p>
-        <p><strong>Environmental score</strong>
+        <p><strong>Environmental score</strong> <i class="fas fa-leaf"></i>
         <br>
         <sl-rating class="star" precision=".1" readonly value=<%= @brand.environmental_score %>></sl-rating>
         <span class="score-number"><%= @brand.environmental_score.to_f.round(1)%></span></p>
       </div>
+    </div>
 
+    <div class="tab-pane fade" id="nav-news" role="tabpanel" aria-labelledby="nav-news-tab">
+      <h3>Latest news...</h3>
+      <ul>
+        <% @brand.news.each do |element|%>
+          <div class="card-news">
+            <div class="card-news-info">
+              <li> <strong><a href="<%= element.url %>" target="_blank" > <%= element.title %> </a></strong> <br>
+              <em><%= DateTime.parse(element.date).strftime("%a %d of %B %Y at %H:%M") %></em> <br>
+              <%= element.description %></li>
+            </div>
+            <img src=<%= element.image_url %>>
+          </div>
+        <% end %>
+      </ul>
+      <br>
     </div>
 
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -135,23 +153,23 @@
           <div class="emotions">
             Sadness
               <div class="progress">
-                <div class="progress-bar bg-info" role="progressbar" style="width: <%= @brand.nlp.sadness * 100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.sadness * 100).round(1) %>%</div>
+                <div id="sadness-bar" class="progress-bar bg-info" role="progressbar" data-width="<%= @brand.nlp.sadness * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.sadness * 100).round(1) %>%</div>
               </div>
               Joy
               <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: <%= @brand.nlp.joy * 100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.joy * 100).round(1) %>%</div>
+                <div id="joy-bar" class="progress-bar" role="progressbar" data-width="<%= @brand.nlp.joy * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.joy * 100).round(1) %>%</div>
               </div>
               Fear
               <div class="progress">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: <%= @brand.nlp.fear * 100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.fear * 100).round(1) %>%</div>
+                <div id="fear-bar" class="progress-bar bg-warning" role="progressbar" data-width="<%= @brand.nlp.fear * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.fear * 100).round(1) %>%</div>
               </div>
               Disgust
               <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style="width: <%= @brand.nlp.disgust * 100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.disgust * 100).round(1) %>%</div>
+                <div id="disgust-bar" class="progress-bar bg-success" role="progressbar" data-width="<%= @brand.nlp.disgust * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.disgust * 100).round(1) %>%</div>
               </div>
               Anger
               <div class="progress">
-                <div class="progress-bar bg-danger" role="progressbar" style="width: <%= @brand.nlp.anger * 100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.anger * 100).round(1) %>%</div>
+                <div id="anger-bar" class="progress-bar bg-danger" role="progressbar" data-width="<%= @brand.nlp.anger * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.anger * 100).round(1) %>%</div>
               </div>
              </div>
             <% end %>
@@ -162,7 +180,7 @@
   </div>
 
 
-
+  <br>
 
 
 
