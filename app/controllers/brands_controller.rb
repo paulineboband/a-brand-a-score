@@ -19,7 +19,7 @@ class BrandsController < ApplicationController
     @request = Request.new
     @categories = Category.all
 
-
+    @pagy, @brands = pagy(Brand.all, items: 15)
   end
 
   def show
