@@ -122,8 +122,19 @@
                   <% @brand.reviews.reverse.each do |review| %>
                     <div class="review-card">
                       <li>
-                        <strong><%= review.title %></strong> - <sl-rating class="star" precision=".1" readonly value=<%= review.score %> ></sl-rating><br>
-                        <%= review.content %>
+                        <div class="review-title">
+                          <div>
+                            <strong><%= review.title %></strong> - <sl-rating class="star-index" precision=".1" readonly value=<%= review.score %> ></sl-rating>
+                          </div>
+                          <div>
+                            <%= link_to ('<i class="far fa-thumbs-up"></i>').html_safe, brand_review_votes_path(@brand, review), method: :post %>
+                            <%= review.votes.size %>
+                          </div>
+                        </div>
+                        <div class="review-content">
+                          <%= review.content %>
+                        </div>
+
                       </li>
                     </div>
                   <% end %>
@@ -220,6 +231,7 @@
 
 
 </div>
+
 
 
 
