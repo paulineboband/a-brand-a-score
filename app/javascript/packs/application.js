@@ -26,16 +26,19 @@ require("channels")
 import "bootstrap";
 
 // Internal imports, e.g:
+
 import { showModal } from '../plugins/display_modal';
 import { showRequestModal } from '../plugins/display_modal_request';
+import { searchBar } from '../plugins/search_bar'
 import { move } from '../plugins/bars';
 import { initCategoryFilter } from '../plugins/category_filter';
-
 
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   initCategoryFilter();
+  
+  searchBar();
 
   if (document.getElementById('reviewModal')) {
     showModal();
@@ -43,6 +46,7 @@ document.addEventListener('turbolinks:load', () => {
   if (document.getElementById('requestModal')) {
     showRequestModal();
   }
+
   document.addEventListener('click', () => {
     if (document.getElementById('nav-profile-tab')) {
       move("anger-bar");
@@ -52,7 +56,6 @@ document.addEventListener('turbolinks:load', () => {
       move("fear-bar");
     }
   });
-
 
 });
 

@@ -31,3 +31,50 @@
 .navbar-elements {
   margin-left:25px;
 }
+
+.navbar-links {
+  display: flex;
+  align-items:center;
+}
+
+#nav-search {
+  visibility: hidden;
+}
+
+#nav-search.active {
+  visibility: visible;
+}
+
+#search-form {
+  display: flex;
+  align-items: center;
+}
+
+#search-form.active {
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+
+  .form-control {
+    height:35px;
+    font-size:15px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+  .nav-btn {
+    background-color:$darkgreen;
+    color: white;
+    padding-left: 3px;
+    padding-right: 3px;
+    height:35px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding-top:6px;
+  }
+}
+
+.nav-btn {
+  color: $darkgreen;
+
+}
