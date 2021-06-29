@@ -5,29 +5,40 @@ class NlpsController < ApplicationController
     @text = @brand.reviews.map { |review| "#{review.title} #{review.content}" }.join(" ")
     @analyse = WatsonService.new(@text).analyse
 
-    if @brand.nlp.nil?
+    if @brand.nlps.length != 0
+      @brand.nlps.each do |nlp|
+        nlp.destroy
+      end
+    end
+
+    nlp = Nlp.new(
+      brand_id: @brand.id,
+      keyword: "document",
+      sentiment_score: @analyse["sentiment"]["document"]["score"],
+      sentiment_label: @analyse["sentiment"]["document"]["label"],
+      joy: @analyse["emotion"]["document"]["emotion"]["joy"],
+      sadness: @analyse["emotion"]["document"]["emotion"]["sadness"],
+      fear: @analyse["emotion"]["document"]["emotion"]["fear"],
+      disgust: @analyse["emotion"]["document"]["emotion"]["disgust"],
+      anger: @analyse["emotion"]["document"]["emotion"]["anger"]
+    )
+    nlp.save!
+
+    @analyse["keywords"].each do |keyword|
       nlp = Nlp.new(
         brand_id: @brand.id,
-        sentiment_score: @analyse["sentiment"]["document"]["score"],
-        sentiment_label: @analyse["sentiment"]["document"]["label"],
-        joy: @analyse["emotion"]["document"]["emotion"]["joy"],
-        sadness: @analyse["emotion"]["document"]["emotion"]["sadness"],
-        fear: @analyse["emotion"]["document"]["emotion"]["fear"],
-        disgust: @analyse["emotion"]["document"]["emotion"]["disgust"],
-        anger: @analyse["emotion"]["document"]["emotion"]["anger"]
-      )
+        keyword: keyword["text"],
+        sentiment_score: keyword["sentiment"]["score"],
+        sentiment_label: keyword["sentiment"]["label"],
+        joy: keyword["emotion"]["joy"],
+        sadness: keyword["emotion"]["sadness"],
+        fear: keyword["emotion"]["fear"],
+        disgust: keyword["emotion"]["disgust"],
+        anger: keyword["emotion"]["anger"]
+        )
       nlp.save!
-      redirect_to brand_path(@brand)
-    else
-      @brand.nlp.sentiment_score = @analyse["sentiment"]["document"]["score"]
-      @brand.nlp.sentiment_label = @analyse["sentiment"]["document"]["label"]
-      @brand.nlp.joy = @analyse["emotion"]["document"]["emotion"]["joy"]
-      @brand.nlp.sadness = @analyse["emotion"]["document"]["emotion"]["sadness"]
-      @brand.nlp.fear = @analyse["emotion"]["document"]["emotion"]["fear"]
-      @brand.nlp.disgust = @analyse["emotion"]["document"]["emotion"]["disgust"]
-      @brand.nlp.anger = @analyse["emotion"]["document"]["emotion"]["anger"]
-      @brand.nlp.save!
-      redirect_to brand_path(@brand)
     end
+
+    redirect_to brand_path(@brand)
   end
 end

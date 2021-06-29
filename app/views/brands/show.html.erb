@@ -148,41 +148,46 @@
 
         <div class="sentiment-card">
 
-          <% if @brand.nlp.nil? %>
+          <% if @brand.nlps.length == 0 %>
             <%= "No sentiment for now" %>
           <% else %>
           <div>
-            General sentiment: <strong><%= @brand.nlp.sentiment_label %></strong> <br>
-            <% if @brand.nlp.sentiment_score >= 0 %>
-              <sl-progress-ring size="200" stroke-width="10" percentage=<%= @brand.nlp.sentiment_score * 100 %> > <%= (@brand.nlp.sentiment_score * 100).round(1) %> % </sl-progress-ring>
+            General sentiment: <strong><%= @brand.nlps.first.sentiment_label %></strong> <br>
+            <% if @brand.nlps.first.sentiment_score >= 0 %>
+              <sl-progress-ring size="200" stroke-width="10" percentage=<%= @brand.nlps.first.sentiment_score * 100 %> > <%= (@brand.nlps.first.sentiment_score * 100).round(1) %> % </sl-progress-ring>
             <% else %>
-              <sl-progress-ring style="--track-color: #ffe2c6; --indicator-color: tomato;" size="200" stroke-width="10" percentage=<%= @brand.nlp.sentiment_score * 100 %> > <%= (@brand.nlp.sentiment_score * 100).round(1) %> % </sl-progress-ring>
+              <sl-progress-ring style="--track-color: #ffe2c6; --indicator-color: tomato;" size="200" stroke-width="10" percentage=<%= @brand.nlps.first.sentiment_score * 100 %> > <%= (@brand.nlps.first.sentiment_score * 100).round(1) %> % </sl-progress-ring>
             <% end %>
           </div>
-          Emotions <br>
+          Emotions: <br>
           <div class="emotions">
             Sadness
-              <div class="progress">
-                <div id="sadness-bar" class="progress-bar bg-info" role="progressbar" data-width="<%= @brand.nlp.sadness * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.sadness * 100).round(1) %>%</div>
-              </div>
-              Joy
-              <div class="progress">
-                <div id="joy-bar" class="progress-bar" role="progressbar" data-width="<%= @brand.nlp.joy * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.joy * 100).round(1) %>%</div>
-              </div>
-              Fear
-              <div class="progress">
-                <div id="fear-bar" class="progress-bar bg-warning" role="progressbar" data-width="<%= @brand.nlp.fear * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.fear * 100).round(1) %>%</div>
-              </div>
-              Disgust
-              <div class="progress">
-                <div id="disgust-bar" class="progress-bar bg-success" role="progressbar" data-width="<%= @brand.nlp.disgust * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.disgust * 100).round(1) %>%</div>
-              </div>
-              Anger
-              <div class="progress">
-                <div id="anger-bar" class="progress-bar bg-danger" role="progressbar" data-width="<%= @brand.nlp.anger * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlp.anger * 100).round(1) %>%</div>
-              </div>
-             </div>
-            <% end %>
+            <div class="progress">
+              <div id="sadness-bar" class="progress-bar bg-info" role="progressbar" data-width="<%= @brand.nlps.first.sadness * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlps.first.sadness * 100).round(1) %>%</div>
+            </div>
+            Joy
+            <div class="progress">
+              <div id="joy-bar" class="progress-bar" role="progressbar" data-width="<%= @brand.nlps.first.joy * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlps.first.joy * 100).round(1) %>%</div>
+            </div>
+            Fear
+            <div class="progress">
+              <div id="fear-bar" class="progress-bar bg-warning" role="progressbar" data-width="<%= @brand.nlps.first.fear * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlps.first.fear * 100).round(1) %>%</div>
+            </div>
+            Disgust
+            <div class="progress">
+              <div id="disgust-bar" class="progress-bar bg-success" role="progressbar" data-width="<%= @brand.nlps.first.disgust * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlps.first.disgust * 100).round(1) %>%</div>
+            </div>
+            Anger
+            <div class="progress">
+              <div id="anger-bar" class="progress-bar bg-danger" role="progressbar" data-width="<%= @brand.nlps.first.anger * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (@brand.nlps.first.anger * 100).round(1) %>%</div>
+            </div>
+          </div>
+          <br>
+          <button class="green-btn" id="keywords" data-toggle="modal" data-target="#keywordsModal">
+            Keywords details
+          </button>
+          <%= render "/shared/modalkeywords", brand: @brand, display_modal: @display_modal %>
+          <% end %>
 
         </div>
       </div>

@@ -3,7 +3,7 @@ class Brand < ApplicationRecord
   has_many :reviews
   has_many :brand_categories
   has_many :categories, through: :brand_categories
-  has_one :nlp
+  has_many :nlps
   has_many :news
 
   include PgSearch::Model
