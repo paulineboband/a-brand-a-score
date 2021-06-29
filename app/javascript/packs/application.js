@@ -34,12 +34,12 @@ import { searchBar } from '../plugins/search_bar'
 import { move } from '../plugins/bars';
 import { initCategoryFilter } from '../plugins/category_filter';
 import { initSorting } from '../plugins/sort_by';
+import { initSweetalert } from '../plugins/init_sweetalert';
 import { loader } from '../plugins/loader';
 
 document.addEventListener('turbolinks:visit', () => {
   $('#loading').show();
 });
-
 
 document.addEventListener('turbolinks:load', () => {
 
@@ -81,6 +81,17 @@ document.addEventListener('turbolinks:load', () => {
       move("fear-bar");
     }
   });
+
+    initSweetalert('#fake-btn-fav', {
+      title: "Remove from your favorites",
+      text: "Do you want to remove this brand from your favorites?",
+      icon: "warning"
+    }, (value) => {
+      if (value) {
+        const link = document.querySelector('#btn-remove-fav');
+        link.click();
+      }
+    });
 
 
 });
