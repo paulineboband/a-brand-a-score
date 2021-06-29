@@ -33,7 +33,7 @@ import { showRequestModal } from '../plugins/display_modal_request';
 import { searchBar } from '../plugins/search_bar'
 import { move } from '../plugins/bars';
 import { initCategoryFilter } from '../plugins/category_filter';
-
+import { initSorting } from '../plugins/sort_by';
 
 document.addEventListener('turbolinks:load', () => {
 
@@ -51,6 +51,9 @@ document.addEventListener('turbolinks:load', () => {
     initCategoryFilter();
   }
 
+  if (document.getElementById('select-sorting')) {
+    initSorting();
+  }
 
   if (document.getElementById('reviewModal')) {
     showModal();
