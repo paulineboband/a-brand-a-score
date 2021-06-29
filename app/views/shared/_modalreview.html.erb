@@ -8,12 +8,15 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="img-loading" >
+        <%= image_tag('loader-img.gif')%>
+      </div>
+      <div class="modal-body" id="review-loading" >
           <%= simple_form_for [ brand, review ] do |f| %>
             <%= f.input :title %>
             <%= f.input :content %>
             <%= f.input :score %> <!-- <sl-rating class="star" precision=".1" value="0"></sl-rating> -->
-            <%= f.submit "Submit review", class: "green-btn" %>
+            <%= f.submit "Submit review", class: "green-btn", id:"loader-btn" %>
           <% end %>
       </div>
       <div class="modal-footer">

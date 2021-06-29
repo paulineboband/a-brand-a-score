@@ -34,6 +34,7 @@ import { searchBar } from '../plugins/search_bar'
 import { move } from '../plugins/bars';
 import { initCategoryFilter } from '../plugins/category_filter';
 import { initSorting } from '../plugins/sort_by';
+import { loader } from '../plugins/loader';
 
 document.addEventListener('turbolinks:load', () => {
 
@@ -46,6 +47,7 @@ document.addEventListener('turbolinks:load', () => {
 
   // Call your functions here, e.g:
   searchBar();
+  loader();
 
   if (document.getElementById('select-filter')) {
     initCategoryFilter();
