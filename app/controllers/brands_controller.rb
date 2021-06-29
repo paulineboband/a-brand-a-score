@@ -6,6 +6,7 @@ class BrandsController < ApplicationController
       @brands = Brand.joins(:categories).where(categories: { name: params[:category] }).order('name ASC')
     else
       @brands = Brand.all.order('name ASC')
+
     end
 
     @brands.each do |brand|
@@ -18,8 +19,6 @@ class BrandsController < ApplicationController
 
     @request = Request.new
     @categories = Category.all
-
-    @pagy, @brands = pagy(Brand.all, items: 15)
   end
 
   def show
