@@ -35,9 +35,15 @@ import { move } from '../plugins/bars';
 import { initCategoryFilter } from '../plugins/category_filter';
 import { initSorting } from '../plugins/sort_by';
 import { initSweetalert } from '../plugins/init_sweetalert';
+import { loader } from '../plugins/loader';
 
+document.addEventListener('turbolinks:visit', () => {
+  $('#loading').show();
+});
 
 document.addEventListener('turbolinks:load', () => {
+
+  $('#loading').hide();
 
   $('.brand-carrousel').slick({
       infinite: true,
@@ -46,8 +52,10 @@ document.addEventListener('turbolinks:load', () => {
       slidesToScroll: 3
     });
 
+
   // Call your functions here, e.g:
   searchBar();
+  loader();
 
   if (document.getElementById('select-filter')) {
     initCategoryFilter();

@@ -4,6 +4,7 @@ class NlpsController < ApplicationController
     @brand = Brand.find(params[:brand_id])
     @text = @brand.reviews.map { |review| "#{review.title} #{review.content}" }.join(" ")
     @analyse = WatsonService.new(@text).analyse
+    @review_tab = true
 
     if @brand.nlp.nil?
       nlp = Nlp.new(
@@ -17,7 +18,8 @@ class NlpsController < ApplicationController
         anger: @analyse["emotion"]["document"]["emotion"]["anger"]
       )
       nlp.save!
-      redirect_to brand_path(@brand)
+     # redirect_to brand_path(@brand)
+      redirect_to controller: 'brands', action: 'show', id: @brand.id, review_tab: 'true'
     else
       @brand.nlp.sentiment_score = @analyse["sentiment"]["document"]["score"]
       @brand.nlp.sentiment_label = @analyse["sentiment"]["document"]["label"]
@@ -27,7 +29,8 @@ class NlpsController < ApplicationController
       @brand.nlp.disgust = @analyse["emotion"]["document"]["emotion"]["disgust"]
       @brand.nlp.anger = @analyse["emotion"]["document"]["emotion"]["anger"]
       @brand.nlp.save!
-      redirect_to brand_path(@brand)
+      # redirect_to brand_path(@brand)
+      redirect_to controller: 'brands', action: 'show', id: @brand.id, review_tab: 'true'
     end
   end
 end
