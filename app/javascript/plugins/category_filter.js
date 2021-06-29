@@ -3,6 +3,8 @@ const initCategoryFilter = () => {
  console.log(select)
 
  select.addEventListener('change', (event) => {
+  const url = window.location.href
+  window.location.href = url.replace(/\?\w*=\w*/, '')
   const type = event.currentTarget.value;
   const cards = document.querySelectorAll(`[data-category-select=${type}]`);
   console.log(cards)
