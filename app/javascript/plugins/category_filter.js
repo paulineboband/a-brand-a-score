@@ -3,11 +3,13 @@ const initCategoryFilter = () => {
  console.log(select)
 
  select.addEventListener('change', (event) => {
+  event.preventDefault();
   const url = window.location.href
-  window.location.href = url.replace(/\?\w*=\w*/, '')
+  if ( url.match(/\?\w*=\w*/) ) {
+    window.location.href = url.replace(/\?\w*=\w*/, '')
+  };
   const type = event.currentTarget.value;
   const cards = document.querySelectorAll(`[data-category-select=${type}]`);
-  console.log(cards)
   const allCards = document.querySelectorAll('.card-product')
   allCards.forEach(card => card.style.display = 'none');
   cards.forEach(card => card.parentElement.style.display = "");
