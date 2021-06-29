@@ -34,8 +34,16 @@ import { searchBar } from '../plugins/search_bar'
 import { move } from '../plugins/bars';
 import { initCategoryFilter } from '../plugins/category_filter';
 import { initSorting } from '../plugins/sort_by';
+import { initSweetalert } from '../plugins/init_sweetalert';
+import { loader } from '../plugins/loader';
+
+document.addEventListener('turbolinks:visit', () => {
+  $('#loading').show();
+});
 
 document.addEventListener('turbolinks:load', () => {
+
+  $('#loading').hide();
 
   $('.brand-carrousel').slick({
       infinite: true,
@@ -44,8 +52,10 @@ document.addEventListener('turbolinks:load', () => {
       slidesToScroll: 3
     });
 
+
   // Call your functions here, e.g:
   searchBar();
+
 
   if (document.getElementById('select-filter')) {
     initCategoryFilter();
@@ -54,6 +64,11 @@ document.addEventListener('turbolinks:load', () => {
   if (document.getElementById('select-sorting')) {
     initSorting();
   }
+
+    if (document.getElementById('nav-profile-tab"')) {
+    loader();
+  }
+
 
   if (document.getElementById('reviewModal')) {
     showModal();
@@ -71,6 +86,17 @@ document.addEventListener('turbolinks:load', () => {
       move("fear-bar");
     }
   });
+
+    initSweetalert('#fake-btn-fav', {
+      title: "Remove from your favorites",
+      text: "Do you want to remove this brand from your favorites?",
+      icon: "warning"
+    }, (value) => {
+      if (value) {
+        const link = document.querySelector('#btn-remove-fav');
+        link.click();
+      }
+    });
 
 
 });

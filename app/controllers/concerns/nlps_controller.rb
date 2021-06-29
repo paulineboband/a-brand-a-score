@@ -4,6 +4,7 @@ class NlpsController < ApplicationController
     @brand = Brand.find(params[:brand_id])
     @text = @brand.reviews.map { |review| "#{review.title} #{review.content}" }.join(" ")
     @analyse = WatsonService.new(@text).analyse
+    @review_tab = true
 
     if @brand.nlps.length != 0
       @brand.nlps.each do |nlp|
@@ -38,7 +39,6 @@ class NlpsController < ApplicationController
         )
       nlp.save!
     end
-
-    redirect_to brand_path(@brand)
+    redirect_to controller: 'brands', action: 'show', id: @brand.id, review_tab: 'true'
   end
 end

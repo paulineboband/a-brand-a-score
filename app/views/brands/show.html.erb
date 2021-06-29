@@ -1,4 +1,7 @@
+
+
 <div class="container-show">
+
 
 
 <div class="section-container">
@@ -12,7 +15,8 @@
         <% if @toggle == [] %>
           <%= link_to ('<i class="far fa-heart"></i>').html_safe, brand_favorites_path(@brand), method: :post %>
         <% else %>
-          <i class="fas fa-heart"></i>
+          <%= link_to ('<i class="fas fa-heart"></i>').html_safe, brand_favorite_path(@brand.id, @brand.favorites[0].id), method: :delete, id: "btn-remove-fav", hidden: true %>
+          <i class="fas fa-heart" id="fake-btn-fav"></i>
         <% end %>
       </div>
     </div>
@@ -60,10 +64,11 @@
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
       <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Detailed Scores</button>
-      <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Reviews</button>
+      <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" data-display-review="<%= params[:review_tab] %>" >Reviews</button>
       <button class="nav-link" id="nav-news-tab" data-bs-toggle="tab" data-bs-target="#nav-news" type="button" role="tab" aria-controls="nav-news" aria-selected="false">Latest News</button>
     </div>
   </nav>
+
 
   <div class="tab-content section-container" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -204,23 +209,25 @@
 
   <div class="section-container">
 
-  <div class="brand-carrousel all-cards">
-    <% @random.each do |brand| %>
-      <div class="card-product">
-        <div class="card-car">
-          <img src=<%= brand.logo %>>
-          <div class="card-product-infos">
-            <p id="brand-name"><%= link_to brand.name, brand_path(brand) %></p>
-            <p>Overall score : <%= brand.overall_score.to_f.round(1)%>/5 </p>
+    <div class="brand-carrousel all-cards">
+      <% @random.each do |brand| %>
+        <div class="card-product">
+          <div class="card-car">
+            <img src=<%= brand.logo %>>
+            <div class="card-product-infos">
+              <p><%= link_to brand.name, brand_path(brand), class: "brand-name" %></p>
+                <div class="team-score">
+                  <sl-rating class="little-star" precision=".1" readonly value=<%= brand.overall_score %>></sl-rating>
+                  <span class="score-number"><%= brand.overall_score.to_f.round(1)%></span>
+                </div>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
-
-<br>
-<br>
+  <br>
+  <br>
 </div>
 
 
