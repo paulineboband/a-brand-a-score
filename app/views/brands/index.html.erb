@@ -22,11 +22,19 @@
 
   <% else %>
 
-  <select  name="category" id="select-filter">
+  <select class="filter-btn" name="category" id="select-filter">
     <option value="All">Categories</option>
     <% @categories.each do |category| %>
       <option value="<%= category.name %>"><%= category.name.capitalize %></option>
     <% end %>
+  </select>
+
+  <select class="filter-btn" name="sort-by" id="select-sorting">
+    <option value="All">Sort by</option>
+    <option value="A-Z">A-Z</option>
+    <option value="Z-A">Z-A</option>
+    <option value="Higher score">Higher score</option>
+    <option value="Lower score">Lower score</option>
   </select>
 
 
@@ -43,10 +51,10 @@
   </div>
 -->
 
-  <div class="all-cards">
+  <div class="all-cards" id="cards-div">
 
     <% @brands.each do |brand| %>
-      <div class="card-product">
+      <div class="card-product" data-name="<%= brand.name %>" data-score="<%= brand.overall_score %>" data-id="<%= brand.id %>">
           <% brand.categories.each do |category| %>
             <div data-category-select="<%= category.name %>">  </div>
 
