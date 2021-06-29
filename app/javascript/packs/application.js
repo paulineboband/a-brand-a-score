@@ -36,7 +36,14 @@ import { initCategoryFilter } from '../plugins/category_filter';
 import { initSorting } from '../plugins/sort_by';
 import { loader } from '../plugins/loader';
 
+document.addEventListener('turbolinks:visit', () => {
+  $('#loading').show();
+});
+
+
 document.addEventListener('turbolinks:load', () => {
+
+  $('#loading').hide();
 
   $('.brand-carrousel').slick({
       infinite: true,
@@ -44,6 +51,7 @@ document.addEventListener('turbolinks:load', () => {
       centerMode: true,
       slidesToScroll: 3
     });
+
 
   // Call your functions here, e.g:
   searchBar();

@@ -8,10 +8,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" id="img-loading" >
-        <%= image_tag('loader-img.gif')%>
-      </div>
-      <div class="modal-body" id="review-loading" >
+      <div class="modal-body">
           <%= simple_form_for [ brand, review ] do |f| %>
             <%= f.input :title %>
             <%= f.input :content %>

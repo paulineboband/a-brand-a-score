@@ -6,11 +6,14 @@ class VotesController < ApplicationController
     @vote.user = current_user
     @brand = @review.brand
     if @vote.save
-      redirect_to brand_path(@brand), notice: "+1 vote added to the review."
+      flash[:notice] = "+1 vote added to the review."
+      redirect_to controller: 'brands', action: 'show', id: @brand.id, review_tab: 'true'
     elsif @vote.present?
-      redirect_to brand_path(@brand), alert: "You have already voted."
+      flash[:alert] = "You have already voted."
+      redirect_to controller: 'brands', action: 'show', id: @brand.id, review_tab: 'true'
     else
-      redirect_to brand_path(@brand), alert: "Error: the vote has not been added."
+      flash[:alert] = "Error: the vote has not been added."
+      redirect_to controller: 'brands', action: 'show', id: @brand.id, review_tab: 'true'
     end
   end
 
