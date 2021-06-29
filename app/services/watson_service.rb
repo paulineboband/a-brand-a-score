@@ -22,7 +22,8 @@ class WatsonService
       text: @text,
       features: {
         emotion: {},
-        sentiment: {}
+        sentiment: {},
+        keywords: {sentiment: true, emotion: true, limit:3}
       }
     )
 

@@ -36,6 +36,21 @@
   text-align: center;
 }
 
+.sentiment-card-modal {
+  width: 95%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  padding: 20px;
+  margin: 10px;
+  border-radius: 1em;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.emotions-parent {
+  width: 80%;
+}
+
 .emotions {
   text-align: left;
 }
