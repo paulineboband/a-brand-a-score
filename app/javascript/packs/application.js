@@ -55,7 +55,7 @@ document.addEventListener('turbolinks:load', () => {
 
   // Call your functions here, e.g:
   searchBar();
-  loader();
+
 
   if (document.getElementById('select-filter')) {
     initCategoryFilter();
@@ -64,6 +64,11 @@ document.addEventListener('turbolinks:load', () => {
   if (document.getElementById('select-sorting')) {
     initSorting();
   }
+
+    if (document.getElementById('nav-profile-tab"')) {
+    loader();
+  }
+
 
   if (document.getElementById('reviewModal')) {
     showModal();
