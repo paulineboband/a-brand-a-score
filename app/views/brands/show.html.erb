@@ -12,8 +12,8 @@
         <% if @toggle == [] %>
           <%= link_to ('<i class="far fa-heart"></i>').html_safe, brand_favorites_path(@brand), method: :post %>
         <% else %>
-          <%= link_to ('<i class="fas fa-heart"></i>').html_safe, brand_favorite_path(@brand.id, @brand.favorites[0].id), method: :delete, data: { confirm: "Delete #{@brand.name} from your favorite brands?"} %>
-
+          <%= link_to ('<i class="fas fa-heart"></i>').html_safe, brand_favorite_path(@brand.id, @brand.favorites[0].id), method: :delete, id: "btn-remove-fav", hidden: true %>
+          <i class="fas fa-heart" id="fake-btn-fav"></i>
         <% end %>
       </div>
     </div>
