@@ -199,23 +199,25 @@
 
   <div class="section-container">
 
-  <div class="brand-carrousel all-cards">
-    <% @random.each do |brand| %>
-      <div class="card-product">
-        <div class="card-car">
-          <img src=<%= brand.logo %>>
-          <div class="card-product-infos">
-            <p id="brand-name"><%= link_to brand.name, brand_path(brand) %></p>
-            <p>Overall score : <%= brand.overall_score.to_f.round(1)%>/5 </p>
+    <div class="brand-carrousel all-cards">
+      <% @random.each do |brand| %>
+        <div class="card-product">
+          <div class="card-car">
+            <img src=<%= brand.logo %>>
+            <div class="card-product-infos">
+              <p><%= link_to brand.name, brand_path(brand), class: "brand-name" %></p>
+                <div class="team-score">
+                  <sl-rating class="little-star" precision=".1" readonly value=<%= brand.overall_score %>></sl-rating>
+                  <span class="score-number"><%= brand.overall_score.to_f.round(1)%></span>
+                </div>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
-
-<br>
-<br>
+  <br>
+  <br>
 </div>
 
 
