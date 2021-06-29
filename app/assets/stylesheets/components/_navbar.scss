@@ -30,6 +30,7 @@
 
 .navbar-elements {
   margin-left:25px;
+  color: $darkgreen;
 }
 
 .navbar-links {
@@ -77,4 +78,12 @@
 .nav-btn {
   color: $darkgreen;
 
+}
+
+#profil-icon {
+  color: $darkgreen;
+}
+
+.fa-user-circle {
+  font-size: 28px;
 }
