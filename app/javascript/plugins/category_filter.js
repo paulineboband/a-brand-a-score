@@ -10,7 +10,7 @@ const initCategoryFilter = () => {
   allCards.forEach(card => card.style.display = 'none');
   cards.forEach(card => card.parentElement.style.display = "");
   if (type == "All") {
-    allCards.forEach(card => card.parentElement.style.display = "");
+    allCards.forEach(card => card.style.display = "");
     }
   });
 
