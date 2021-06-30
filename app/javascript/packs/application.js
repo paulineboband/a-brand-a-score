@@ -30,6 +30,7 @@ import "bootstrap";
 
 import { showModal } from '../plugins/display_modal';
 import { showRequestModal } from '../plugins/display_modal_request';
+import { showKeywordsModal } from '../plugins/display_modal_keywords';
 import { searchBar } from '../plugins/search_bar'
 import { move } from '../plugins/bars';
 import { initCategoryFilter } from '../plugins/category_filter';
@@ -65,7 +66,7 @@ document.addEventListener('turbolinks:load', () => {
     initSorting();
   }
 
-    if (document.getElementById('nav-profile-tab"')) {
+    if (document.getElementById('nav-profile-tab')) {
     loader();
   }
 
@@ -76,27 +77,36 @@ document.addEventListener('turbolinks:load', () => {
   if (document.getElementById('requestModal')) {
     showRequestModal();
   }
+  if (document.getElementById('keywordsModal')) {
+    showKeywordsModal();
+  }
 
-  document.addEventListener('click', () => {
-    if (document.getElementById('nav-profile-tab')) {
-      move("anger-bar");
-      move("sadness-bar");
-      move("joy-bar");
-      move("disgust-bar");
-      move("fear-bar");
-    }
+  document.getElementById('nav-profile-tab').addEventListener('click', () => {
+    move("anger-bar");
+    move("sadness-bar");
+    move("joy-bar");
+    move("disgust-bar");
+    move("fear-bar");
   });
 
-    initSweetalert('#fake-btn-fav', {
-      title: "Remove from your favorites",
-      text: "Do you want to remove this brand from your favorites?",
-      icon: "warning"
-    }, (value) => {
-      if (value) {
-        const link = document.querySelector('#btn-remove-fav');
-        link.click();
-      }
-    });
+  // document.getElementById(`link-${keyword}`).addEventListener('click', () => {
+  //   move(`anger-bar-${keyword}`);
+  //   move(`sadness-bar-${keyword}`);
+  //   move(`joy-bar-${keyword}`);
+  //   move(`disgust-bar-${keyword}`);
+  //   move(`fear-bar-${keyword}`);
+  // });
+
+  initSweetalert('#fake-btn-fav', {
+    title: "Remove from your favorites",
+    text: "Do you want to remove this brand from your favorites?",
+    icon: "warning"
+  }, (value) => {
+    if (value) {
+      const link = document.querySelector('#btn-remove-fav');
+      link.click();
+    }
+  });
 
 
 });

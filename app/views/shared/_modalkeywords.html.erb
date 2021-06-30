@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="keywordsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-display="<%= display_modal ? 'show' : 'false' %>">
+<div class="modal fade" id="keywordsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-display="<%= display_modal_keywords ? 'show' : 'false' %>">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -9,17 +9,17 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>Here are the main keywords we found:</p> <br>
+        <p>Here are the main keywords we found:</p>
         <% brand.nlps.last(3).each do |nlp|%>
-          <a data-bs-toggle="collapse" href="#collapse<%= nlp.keyword.gsub(/\s/, "-") %>" role="button" aria-expanded="false" aria-controls='collapse<%= nlp.keyword.gsub(/\s/, "-") %>'><h1>"<%= nlp.keyword %>"</h1></a><br>
+          <br>
+          <a id="link-<%= nlp.keyword.gsub(/\s/, "-") %>" data-bs-toggle="collapse" href="#collapse<%= nlp.keyword.gsub(/\s/, "-") %>" role="button" aria-expanded="false" aria-controls='collapse<%= nlp.keyword.gsub(/\s/, "-") %>'><h1 class="keyword-modal">"<%= nlp.keyword %>"</h1></a>
           <div class="collapse" id="collapse<%= nlp.keyword.gsub(/\s/, "-") %>">
-
             <div class="sentiment-card-modal">
               <div>
                 General sentiment: <br>
                 <strong><%= nlp.sentiment_label %></strong> <br>
                 <% if nlp.sentiment_score >= 0 %>
-                  <sl-progress-ring size="180" stroke-width="10" percentage=<%= nlp.sentiment_score * 100 %> > <%= (nlp.sentiment_score * 100).round(1) %> % </sl-progress-ring>
+                  <sl-progress-ring size="160" stroke-width="10" percentage=<%= nlp.sentiment_score * 100 %> > <%= (nlp.sentiment_score * 100).round(1) %> % </sl-progress-ring>
                 <% else %>
                   <sl-progress-ring style="--track-color: #ffe2c6; --indicator-color: tomato;" size="180" stroke-width="10" percentage=<%= nlp.sentiment_score * 100 %> > <%= (nlp.sentiment_score * 100).round(1) %> % </sl-progress-ring>
                 <% end %>
@@ -29,39 +29,30 @@
                 <div class="emotions">
                   Sadness
                   <div class="progress">
-                    <div id="sadness-bar" class="progress-bar bg-info" role="progressbar" data-width="<%= nlp.sadness * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (nlp.sadness * 100).round(1) %>%</div>
+                    <div id="sadness-bar-<%= nlp.keyword.gsub(/\s/, "-") %>" style="width: <%= nlp.sadness * 100 %>%" class="progress-bar bg-info" role="progressbar" data-width="<%= nlp.sadness * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (nlp.sadness * 100).round(1) %>%</div>
                   </div>
                   Joy
                   <div class="progress">
-                    <div id="joy-bar" class="progress-bar" role="progressbar" data-width="<%= nlp.joy * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (nlp.joy * 100).round(1) %>%</div>
+                    <div id="joy-bar-<%= nlp.keyword.gsub(/\s/, "-") %>" style="width: <%= nlp.joy * 100 %>%" class="progress-bar" role="progressbar" data-width="<%= nlp.joy * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (nlp.joy * 100).round(1) %>%</div>
                   </div>
                   Fear
                   <div class="progress">
-                    <div id="fear-bar" class="progress-bar bg-warning" role="progressbar" data-width="<%= nlp.fear * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (nlp.fear * 100).round(1) %>%</div>
+                    <div id="fear-bar-<%= nlp.keyword.gsub(/\s/, "-") %>" style="width: <%= nlp.fear * 100 %>%" class="progress-bar bg-warning" role="progressbar" data-width="<%= nlp.fear * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (nlp.fear * 100).round(1) %>%</div>
                   </div>
                   Disgust
                   <div class="progress">
-                    <div id="disgust-bar" class="progress-bar bg-success" role="progressbar" data-width="<%= nlp.disgust * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (nlp.disgust * 100).round(1) %>%</div>
+                    <div id="disgust-bar-<%= nlp.keyword.gsub(/\s/, "-") %>" style="width: <%= nlp.disgust * 100 %>%" class="progress-bar bg-success" role="progressbar" data-width="<%= nlp.disgust * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (nlp.disgust * 100).round(1) %>%</div>
                   </div>
                   Anger
                   <div class="progress">
-                    <div id="anger-bar" class="progress-bar bg-danger" role="progressbar" data-width="<%= nlp.anger * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (nlp.anger * 100).round(1) %>%</div>
+                    <div id="anger-bar-<%= nlp.keyword.gsub(/\s/, "-") %>" style="width: <%= nlp.anger * 100 %>%" class="progress-bar bg-danger" role="progressbar" data-width="<%= nlp.anger * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (nlp.anger * 100).round(1) %>%</div>
                   </div>
                 </div>
               </div>
-              <br>
-
             </div>
-
-
-
-
-
-
-
-
           </div>
         <% end %>
+        <br>
         <p>Click on one of them to get the sentiment</p>
 
 
