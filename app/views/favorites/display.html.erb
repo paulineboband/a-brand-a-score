@@ -2,12 +2,12 @@
   <h3>My favorite brands</h3>
     <div class="all-cards">
       <% @favorites.each do |favorite|  %>
-        <div class="card-product">
+        <div class="card-favorite text-center">
             <img src=<%= favorite.brand.logo %> />
-              <div class="card-product-infos">
-                <p id="brand--name"> <%= link_to favorite.brand.name, brand_path(favorite.brand) %> </p>
-                <%= link_to "Remove from your favorites", brand_favorite_path(favorite.brand, favorite.id), method: :delete, data: { confirm: "Delete #{favorite.brand.name} from your favorite brands?"}, class: "delete-button"%>
-              </div>
+            <p id="brand--name"> <%= link_to favorite.brand.name, brand_path(favorite.brand) %> </p>
+            <div class="test-btn">
+            <%= link_to "Remove", brand_favorite_path(favorite.brand, favorite.id), method: :delete, data: { confirm: "Delete #{favorite.brand.name} from your favorite brands?"}, class: "delete-favorite-button"%>
+            </div>
           </div>
         <% end %>
       </div>

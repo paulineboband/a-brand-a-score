@@ -1,7 +1,48 @@
 
-#brand--name {
+#brand--name a {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 15px;
   color: $darkgreen;
-  margin-bottom: 35px;
+}
+
+
+.card-favorite {
+  //overflow: hidden;
+  height: 160px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.05);
+  width: 160px;
+  margin: 15px;
+  padding:4px 0px 10px 0px;
+  transition: 1s;
+
+
+  img {
+    height: 100px;
+    width: 100%;
+    object-fit: contain;
+    padding: 15px;
+}
+}
+
+
+.delete-favorite-button {
+
+  font-size: 12px;
+  color: grey;
+
+  &:hover {
+    color:$darkgreen;
+  }
+}
+
+.test-btn {
+  background-color:#e8e8e8;
+  font-size: 12px;
+  width: 160px;
+
+  &:hover {
+    opacity:0.8;
+  }
+
 }
