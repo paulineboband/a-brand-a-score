@@ -23,7 +23,7 @@
   <% else %>
 
   <select class="filter-btn" name="category" id="select-filter">
-    <option value="All">Categories</option>
+    <option value="All">All Categories</option>
     <% @categories.each do |category| %>
       <option value="<%= category.name %>" <% if params[:category] === category.name %>selected="selected"<% end %> ><%= category.name.capitalize %></option>
     <% end %>
@@ -56,8 +56,7 @@
     <% @brands.each do |brand| %>
       <div class="card-product" data-name="<%= brand.name %>" data-score="<%= brand.overall_score %>" data-id="<%= brand.id %>">
           <% brand.categories.each do |category| %>
-            <div data-category-select="<%= category.name %>">  </div>
-
+            <div data-category-select="<%= category.name %>"></div>
           <% end %>
           <div>
             <img src=<%= brand.logo %> />
@@ -81,5 +80,3 @@
 
 
 </div>
-
-
