@@ -1,57 +1,54 @@
 <div class="container-show">
 
-<div class="section-container">
-  <div class="title-show">
-    <div class="name-brand-fav">
-      <div>
-        <h1 class="brand-name-show"><%= @brand.name %></h1>
+<div class="section-container top">
+  <div>
+    <div class="title-show">
+      <div class="name-brand-fav">
+        <div>
+          <h1 class="brand-name-show"><%= @brand.name %></h1>
+        </div>
+
+        <div class="favorites-button">
+          <% if @toggle == [] %>
+            <%= link_to ('<i class="far fa-heart"></i>').html_safe, brand_favorites_path(@brand), method: :post %>
+          <% else %>
+            <%= link_to ('<i class="fas fa-heart"></i>').html_safe, brand_favorite_path(@brand.id, @brand.favorites[0].id), method: :delete, id: "btn-remove-fav", hidden: true %>
+            <i class="fas fa-heart" id="fake-btn-fav"></i>
+          <% end %>
+        </div>
       </div>
 
-      <div class="favorites-button">
-        <% if @toggle == [] %>
-          <%= link_to ('<i class="far fa-heart"></i>').html_safe, brand_favorites_path(@brand), method: :post %>
+      <%= render "/shared/modalreview", brand: @brand, review: @review, display_modal: @display_modal %>
+    </div>
+
+    <a href=<%= "https://" + @brand.website_url %> target="_blank" ><p><%= @brand.website_url %></p></a>
+
+    <br>
+
+    <div class="overall-score-container">
+      <div class="team-score">
+        <p><strong>Our team's score</strong></p>
+        <sl-rating class="star" precision=".1" readonly value=<%= @brand.overall_score %>></sl-rating>
+        <span class="score-number"><%= @brand.overall_score.to_f.round(1)%></span>
+
+      </div>
+
+      <div class="consumer-score">
+        <p><strong>Our consumer's score</strong></p>
+
+        <% if @brand.consumer_score.nil? %>
+          <br>
+          <p class="no-reviews-message">No reviews yet</p>
         <% else %>
-          <%= link_to ('<i class="fas fa-heart"></i>').html_safe, brand_favorite_path(@brand.id, @brand.favorites[0].id), method: :delete, id: "btn-remove-fav", hidden: true %>
-          <i class="fas fa-heart" id="fake-btn-fav"></i>
+        <sl-rating class="star" precision=".1" readonly value=<%= @brand.consumer_score %>></sl-rating>
+        <span class="score-number"><%= @brand.consumer_score.to_f.round(1)%></span>
         <% end %>
       </div>
     </div>
-
-    <!-- Button trigger modal -->
-    <div>
-      <button type="button" class="green-btn" id="add-review" data-toggle="modal" data-target="#reviewModal">
-        Add a review
-      </button>
-    </div>
-
-    <%= render "/shared/modalreview", brand: @brand, review: @review, display_modal: @display_modal %>
   </div>
-
-  <a href=<%= "https://" + @brand.website_url %> target="_blank" ><p><%= @brand.website_url %></p></a>
-
-  <br>
-
-  <div class="overall-score-container">
-    <div class="team-score">
-      <p><strong>Our team's score</strong></p>
-      <sl-rating class="star" precision=".1" readonly value=<%= @brand.overall_score %>></sl-rating>
-      <span class="score-number"><%= @brand.overall_score.to_f.round(1)%></span>
-
-    </div>
-
-    <div class="consumer-score">
-      <p><strong>Our consumer's score</strong></p>
-
-      <% if @brand.consumer_score.nil? %>
-        <br>
-        <p class="no-reviews-message">No reviews yet</p>
-      <% else %>
-      <sl-rating class="star" precision=".1" readonly value=<%= @brand.consumer_score %>></sl-rating>
-      <span class="score-number"><%= @brand.consumer_score.to_f.round(1)%></span>
-      <% end %>
-    </div>
+  <div class="image-logo">
+    <img src=<%= @brand.logo %> />
   </div>
-
 </div>
 
   <br>

@@ -5,6 +5,11 @@
   border-radius: 15px;
 }
 
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+
 .title-show {
   display:flex;
   justify-content: space-between;
@@ -88,5 +93,9 @@
   z-index: 100;
 }
 
-
+.image-logo img {
+  height: 90px;
+  object-fit: contain;
+  margin-right: 20px;
+}
 
