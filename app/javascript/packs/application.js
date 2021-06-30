@@ -57,6 +57,12 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   searchBar();
 
+  move("anger-bar");
+  move("sadness-bar");
+  move("joy-bar");
+  move("disgust-bar");
+  move("fear-bar");
+
 
   if (document.getElementById('select-filter')) {
     initCategoryFilter();
@@ -66,7 +72,7 @@ document.addEventListener('turbolinks:load', () => {
     initSorting();
   }
 
-    if (document.getElementById('nav-profile-tab')) {
+  if (document.getElementById('nav-profile-tab')) {
     loader();
   }
 
