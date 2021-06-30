@@ -29,23 +29,28 @@
                 <div class="emotions">
                   Sadness
                   <div class="progress">
-                    <div id="sadness-bar-<%= nlp.keyword.gsub(/\s/, "-") %>" style="width: <%= nlp.sadness * 100 %>%" class="progress-bar bg-info" role="progressbar" data-width="<%= nlp.sadness * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (nlp.sadness * 100).round(1) %>%</div>
+                    <div id="sadness-bar-<%= nlp.keyword.gsub(/\s/, "-") %>" style="width: <%= nlp.sadness * 100 %>%" class="progress-bar bg-info" role="progressbar" data-width="<%= nlp.sadness * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= "#{(nlp.sadness * 100).round(1)}%" unless nlp.sadness < 0.15 %></div>
+                    <p><%= "#{(nlp.sadness * 100).round(1)}%" unless nlp.sadness >= 0.15 %></p>
                   </div>
                   Joy
                   <div class="progress">
-                    <div id="joy-bar-<%= nlp.keyword.gsub(/\s/, "-") %>" style="width: <%= nlp.joy * 100 %>%" class="progress-bar" role="progressbar" data-width="<%= nlp.joy * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (nlp.joy * 100).round(1) %>%</div>
+                    <div id="joy-bar-<%= nlp.keyword.gsub(/\s/, "-") %>" style="width: <%= nlp.joy * 100 %>%" class="progress-bar" role="progressbar" data-width="<%= nlp.joy * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= "#{(nlp.joy * 100).round(1)}%" unless nlp.joy < 0.15 %></div>
+                    <p><%= "#{(nlp.joy * 100).round(1)}%" unless nlp.joy >= 0.15 %></p>
                   </div>
                   Fear
                   <div class="progress">
-                    <div id="fear-bar-<%= nlp.keyword.gsub(/\s/, "-") %>" style="width: <%= nlp.fear * 100 %>%" class="progress-bar bg-warning" role="progressbar" data-width="<%= nlp.fear * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (nlp.fear * 100).round(1) %>%</div>
+                    <div id="fear-bar-<%= nlp.keyword.gsub(/\s/, "-") %>" style="width: <%= nlp.fear * 100 %>%" class="progress-bar bg-warning" role="progressbar" data-width="<%= nlp.fear * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= "#{(nlp.fear * 100).round(1)}%" unless nlp.fear < 0.15 %></div>
+                    <p><%= "#{(nlp.fear * 100).round(1)}%" unless nlp.fear >= 0.15 %></p>
                   </div>
                   Disgust
                   <div class="progress">
-                    <div id="disgust-bar-<%= nlp.keyword.gsub(/\s/, "-") %>" style="width: <%= nlp.disgust * 100 %>%" class="progress-bar bg-success" role="progressbar" data-width="<%= nlp.disgust * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (nlp.disgust * 100).round(1) %>%</div>
+                    <div id="disgust-bar-<%= nlp.keyword.gsub(/\s/, "-") %>" style="width: <%= nlp.disgust * 100 %>%" class="progress-bar bg-success" role="progressbar" data-width="<%= nlp.disgust * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= "#{(nlp.disgust * 100).round(1)}%" unless nlp.disgust < 0.15 %></div>
+                    <p><%= "#{(nlp.disgust * 100).round(1)}%" unless nlp.disgust >= 0.15 %></p>
                   </div>
                   Anger
                   <div class="progress">
-                    <div id="anger-bar-<%= nlp.keyword.gsub(/\s/, "-") %>" style="width: <%= nlp.anger * 100 %>%" class="progress-bar bg-danger" role="progressbar" data-width="<%= nlp.anger * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= (nlp.anger * 100).round(1) %>%</div>
+                    <div id="anger-bar-<%= nlp.keyword.gsub(/\s/, "-") %>" style="width: <%= nlp.anger * 100 %>%" class="progress-bar bg-danger" role="progressbar" data-width="<%= nlp.anger * 100 %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= "#{(nlp.anger * 100).round(1)}%" unless nlp.anger < 0.15 %></div>
+                    <p><%= "#{(nlp.anger * 100).round(1)}%" unless nlp.anger >= 0.15 %></p>
                   </div>
                 </div>
               </div>
@@ -53,7 +58,7 @@
           </div>
         <% end %>
         <br>
-        <p>Click on one of them to get the sentiment</p>
+        <p>Click on one of them to get the sentiment and emotions</p>
 
 
       </div>
