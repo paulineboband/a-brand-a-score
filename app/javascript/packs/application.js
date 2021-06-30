@@ -57,11 +57,13 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   searchBar();
 
-  move("anger-bar");
-  move("sadness-bar");
-  move("joy-bar");
-  move("disgust-bar");
-  move("fear-bar");
+  if (document.getElementById('nav-profile-tab')) {
+    move("anger-bar");
+    move("sadness-bar");
+    move("joy-bar");
+    move("disgust-bar");
+    move("fear-bar");
+  }
 
 
   if (document.getElementById('select-filter')) {
@@ -87,13 +89,15 @@ document.addEventListener('turbolinks:load', () => {
     showKeywordsModal();
   }
 
-  document.getElementById('nav-profile-tab').addEventListener('click', () => {
-    move("anger-bar");
-    move("sadness-bar");
-    move("joy-bar");
-    move("disgust-bar");
-    move("fear-bar");
-  });
+  if (document.getElementById('nav-profile-tab')) {
+    document.getElementById('nav-profile-tab').addEventListener('click', () => {
+      move("anger-bar");
+      move("sadness-bar");
+      move("joy-bar");
+      move("disgust-bar");
+      move("fear-bar");
+    });
+  }
 
   // document.getElementById(`link-${keyword}`).addEventListener('click', () => {
   //   move(`anger-bar-${keyword}`);
