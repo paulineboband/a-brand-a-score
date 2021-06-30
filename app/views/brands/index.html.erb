@@ -62,7 +62,7 @@
             <img src=<%= brand.logo %> />
           </div>
           <div class="card-product-infos">
-            <p id="brand-name"><%= link_to brand.name, brand_path(brand) %></p>
+            <p id="brand-name"><%= link_to brand.name, brand_path(brand, url: brand.website_url ) %></p>
             <sl-rating class="star-index" precision=".1" readonly value=<%= brand.overall_score %>></sl-rating>
             <span class="rate-index"><%= brand.overall_score.to_f.round(1)%></span>
             <div class="container-tags">
