@@ -54,5 +54,12 @@ class BrandsController < ApplicationController
     @random = sorted.sample(6)
 
     NewsController.create(@brand)
+
+    respond_to do |format|
+      format.html {}
+      format.json {
+        render json: @brand
+      }
+    end
   end
 end
