@@ -1,12 +1,17 @@
 class BrandsController < ApplicationController
   def index
+
     if params[:query].present?
       @brands = Brand.search_by_name(params[:query]).order('name ASC')
     elsif params[:category]
-      @brands = Brand.joins(:categories).where(categories: { name: params[:category] }).order('name ASC')
+      if params[:category] == 'All'
+        @brands = Brand.all.order('name ASC')
+      else
+        @brands = Brand.joins(:categories).where(categories: { name: params[:category] }).order('name ASC')
+      end
+
     else
       @brands = Brand.all.order('name ASC')
-
     end
 
     @brands.each do |brand|
@@ -19,6 +24,13 @@ class BrandsController < ApplicationController
 
     @request = Request.new
     @categories = Category.all
+
+    respond_to do |format|
+      format.html {}
+      format.json {
+        render json: @brands.map { |brand| brand.to_hash }
+      }
+    end
   end
 
   def show

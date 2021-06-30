@@ -12,4 +12,9 @@ class Brand < ApplicationRecord
     using: {
       tsearch: { prefix: true } # <-- now `superman batm` will return something!
     }
+
+
+  def to_hash
+    return attributes.merge(categories: self.categories.pluck(:name))
+  end
 end
