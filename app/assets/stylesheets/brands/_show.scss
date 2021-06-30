@@ -61,6 +61,13 @@
 
 .nav-tabs .nav-link {
     margin-bottom: 0px;
+    padding: 3px 15px;
+    border:none;
+
+    &:hover {
+      background-color: #dbdbdb;
+      color:#282828;
+    }
 }
 
 .brand-name {
