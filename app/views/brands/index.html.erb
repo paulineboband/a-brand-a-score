@@ -1,7 +1,9 @@
 <div class="container-index">
-  <h3>Brands</h3>
+
 
   <% if @brands == [] || @brands.nil? %>
+
+   <h3>Brands</h3>
 
   <p class="no-results-text"><em>No results found...</em><p>
 
@@ -22,20 +24,28 @@
 
   <% else %>
 
-  <select class="filter-btn" name="category" id="select-filter">
-    <option value="All">All Categories</option>
-    <% @categories.each do |category| %>
-      <option value="<%= category.name %>" <% if params[:category] === category.name %>selected="selected"<% end %> ><%= category.name.capitalize %></option>
-    <% end %>
-  </select>
+  <div class="title-select">
+    <div>
+      <h3>Brands</h3>
+    </div>
 
-  <select class="filter-btn" name="sort-by" id="select-sorting">
-    <option value="All">Sort by</option>
-    <option value="A-Z">A-Z</option>
-    <option value="Z-A">Z-A</option>
-    <option value="Higher score">Higher score</option>
-    <option value="Lower score">Lower score</option>
-  </select>
+    <div>
+      <select class="filter-btn" name="category" id="select-filter">
+        <option value="All">All Categories</option>
+        <% @categories.each do |category| %>
+          <option value="<%= category.name %>" <% if params[:category] === category.name %>selected="selected"<% end %> ><%= category.name.capitalize %></option>
+        <% end %>
+      </select>
+
+      <select class="filter-btn" name="sort-by" id="select-sorting">
+        <option value="All">Sort by</option>
+        <option value="A-Z">A-Z</option>
+        <option value="Z-A">Z-A</option>
+        <option value="Higher score">Higher score</option>
+        <option value="Lower score">Lower score</option>
+      </select>
+    </div>
+  </div>
 
 
 <!--
