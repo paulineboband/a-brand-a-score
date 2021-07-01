@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   get 'how-we-rate', to: 'pages#rate'
 
   resources :requests, only: [:create]
+
+  get 'scores', to: 'brands#scores', defaults: {format: :json}
 end

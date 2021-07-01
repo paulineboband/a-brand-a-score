@@ -1,4 +1,5 @@
 class BrandsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :scores
   def index
 
     if params[:query].present?
@@ -54,7 +55,10 @@ class BrandsController < ApplicationController
     @random = sorted.sample(6)
 
     NewsController.create(@brand)
+  end
 
+  def scores
+    @brand = Brand.where(website_url: params[:url])
     respond_to do |format|
       format.html {}
       format.json {
