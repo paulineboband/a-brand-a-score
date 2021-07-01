@@ -1,6 +1,6 @@
 <% content_for :meta_title, "#{@brand.name} is on #{DEFAULT_META["meta_product_name"]}" %>
 <% content_for :meta_description, "#{@brand.name} is scored #{@brand.overall_score}/5" %>
-<% content_for :meta_image, cl_image_path(@brand.logo) %>
+<% content_for :meta_image, @brand.logo %>
 
 
 <div class="container-show">
