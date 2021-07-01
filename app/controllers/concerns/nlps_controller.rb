@@ -39,6 +39,7 @@ class NlpsController < ApplicationController
         )
       nlp.save!
     end
-    redirect_to controller: 'brands', action: 'show', id: @brand.id, review_tab: 'true'
+    # redirect_to controller: 'brands', action: 'show', id: @brand.id, review_tab: 'true'
+    redirect_to brand_path(@brand)
   end
 end
