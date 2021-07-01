@@ -15,7 +15,7 @@ const card = (brand) => {
       <div class="card-product-infos">
         <p id="brand-name"><a href="/brands/${brand.id}">${brand.name}</a></p>
         <sl-rating class="star-index" precision=".1" readonly="" value="${brand.overall_score}"></sl-rating>
-        <span class="rate-index">${Math.round(brand.overall_score)}</span>
+        <span class="rate-index">${Math.round(brand.overall_score*10)/10}</span>
         <div class="container-tags">
             ${categories.join(' ')}
         </div>
