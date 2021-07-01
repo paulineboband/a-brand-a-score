@@ -58,7 +58,8 @@ class BrandsController < ApplicationController
   end
 
   def scores
-    @brand = Brand.where(website_url: params[:url])
+    array_params = params[:url].split(",").map {|word| word.capitalize}
+    @brand = Brand.find_by('name IN (?)', array_params)
     respond_to do |format|
       format.html {}
       format.json {
