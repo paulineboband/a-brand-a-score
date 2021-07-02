@@ -15,7 +15,7 @@ class WatsonService
       version: "2021-03-25",
       authenticator: authenticator
     )
-    natural_language_understanding.service_url = "https://api.eu-gb.natural-language-understanding.watson.cloud.ibm.com/instances/ae1fec12-7f91-4efc-bdf1-5b37e6373007"
+    natural_language_understanding.service_url = "https://api.eu-gb.natural-language-understanding.watson.cloud.ibm.com/instances/12ed5a68-6868-461b-9fb8-a3208f37d7fc"
 
 
     response = natural_language_understanding.analyze(
